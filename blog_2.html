@@ -4,6 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <script src="./lib/L2Dwidget.min.js"></script>
         <meta name="description" content="">
         <meta name="author" content="">
 
@@ -34,7 +35,12 @@ https://templatemo.com/tm-567-nomad-force
     </head>
     
     <body>
-    
+        
+        <script>
+            L2Dwidget.init({
+              model: { jsonPath: "./assets/asuna_04.model.json" }
+            });
+          </script>
         <main>
 
             <nav class="navbar navbar-expand-lg bg-light shadow-lg">
