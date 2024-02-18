@@ -1,0 +1,563 @@
+
+  <!DOCTYPE html>
+  <html lang="en"  >
+  <head>
+  <meta charset="utf-8">
+  
+
+  
+
+  
+  <title>
+    彩色弹幕渲染 |
+    
+    Hexo
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="preload" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css">
+<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css">
+
+  <link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  
+<link rel="stylesheet" href="/css/loader.css">
+
+  <meta name="description" content="为了得到一个彩色弹幕，首先，我们为贴图准备一个二维平面 在这段代码中，我们传入了一个VertexConsumer对象，并为其定义了四个在边长为size的正方形的顶点。传入了一个color值，通过Color对象拿到r,g,b三个分量并赋予这个平面。 12345678910111213141516171819202122232425262728293031323334353637383940priva">
+<meta property="og:type" content="article">
+<meta property="og:title" content="彩色弹幕渲染">
+<meta property="og:url" content="http://example.com/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="为了得到一个彩色弹幕，首先，我们为贴图准备一个二维平面 在这段代码中，我们传入了一个VertexConsumer对象，并为其定义了四个在边长为size的正方形的顶点。传入了一个color值，通过Color对象拿到r,g,b三个分量并赋予这个平面。 12345678910111213141516171819202122232425262728293031323334353637383940priva">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-02-15T15:41:10.574Z">
+<meta property="article:modified_time" content="2024-02-15T17:04:47.713Z">
+<meta property="article:author" content="Crystal1921">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="mod">
+<meta property="article:tag" content="mc">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/images/favicon.ico">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+
+  
+  
+  
+  
+  
+<script src="https://npm.webcache.cn/pace-js@1.2.4/pace.min.js"></script>
+
+  
+    
+<link rel="stylesheet" href="https://npm.webcache.cn/wowjs@1.1.3/css/libs/animate.css">
+
+    
+<script src="https://npm.webcache.cn/wowjs@1.1.3/dist/wow.min.js"></script>
+
+    <script>
+      new WOW({
+        offset: 0,
+        mobile: true,
+        live: false
+      }).init();
+    </script>
+  
+  
+    <script src="/sw.js"></script>
+  
+<meta name="generator" content="Hexo 7.1.1"></head>
+
+  <body>
+    
+  <div id='loader'>
+    <div class="loading-left-bg"></div>
+    <div class="loading-right-bg"></div>
+    <div class="spinner-box">
+      <div class="loading-taichi">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+          <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
+          <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
+          <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
+        </svg>
+      </div>
+      <div class="loading-word">少女祈祷中...</div>
+    </div>
+  </div>
+  </div>
+  <script>
+    var time = null;
+    const startLoading = () => {
+      time = Date.now();
+      document.getElementById('loader').classList.remove("loading");
+    }
+    const endLoading = () => {
+      if (!time) {
+        document.body.style.overflow = 'auto';
+        document.getElementById('loader').classList.add("loading");
+      } else {
+        if (Date.now() - time > 500) {
+          time = null;
+          document.body.style.overflow = 'auto';
+          document.getElementById('loader').classList.add("loading");
+        } else {
+          setTimeout(endLoading, 500 - (Date.now() - time));
+          time = null;
+        }
+      }
+    }
+    window.addEventListener('load', endLoading);
+    document.getElementById('loader').addEventListener('click', endLoading);
+  </script>
+
+
+    <div id="container">
+      <div id="wrap">
+        <div id="header-nav">
+  <nav id="main-nav">
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/">Home</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/archives">Archives</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/about">About</a>
+      </span>
+    
+      <span class="main-nav-link-wrap">
+        <span class="main-nav-icon"></span>
+        <a class="main-nav-link" href="/friend">Friend</a>
+      </span>
+    
+    <a id="main-nav-toggle" class="nav-icon"></a>
+  </nav>
+  <nav id="sub-nav">
+    
+      <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+    
+    
+    
+  </nav>
+</div>
+<header id="header">
+  
+    <img fetchpriority="high" src="/images/banner.jpg" alt="彩色弹幕渲染">
+  
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <div id="logo-wrap">
+        
+          
+          
+            <a href="/" id="logo">
+              <h1>彩色弹幕渲染</h1>
+            </a>
+          
+        
+      </div>
+      
+        
+        <h2 id="subtitle-wrap">
+          
+        </h2>
+      
+    </div>
+  </div>
+</header>
+
+        <div id="content" class="outer">
+          
+          <section id="main"><article id="post-彩色弹幕渲染" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    <div class="article-meta">
+      <div class="article-date wow slideInLeft">
+  <a href="/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/" class="article-date-link">
+    <time datetime="2024-02-15T15:41:10.574Z" itemprop="datePublished">2024-02-15</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>为了得到一个彩色弹幕，首先，我们为贴图准备一个二维平面</p>
+<p>在这段代码中，我们传入了一个VertexConsumer对象，并为其定义了四个在边长为size的正方形的顶点。传入了一个color值，通过Color对象拿到r,g,b三个分量并赋予这个平面。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">renderSquare</span><span class="params">(VertexConsumer consumer, Matrix4f matrix4f, Matrix3f matrix3f, <span class="type">int</span> i, <span class="type">float</span> size,<span class="type">int</span> rgb)</span> &#123;</span><br><span class="line">    <span class="type">float</span> <span class="variable">x1</span> <span class="operator">=</span> -size;</span><br><span class="line">    <span class="type">float</span> <span class="variable">y1</span> <span class="operator">=</span> -size;</span><br><span class="line">    <span class="type">Color</span> <span class="variable">color</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">Color</span>(rgb);</span><br><span class="line">    <span class="type">int</span> <span class="variable">red</span> <span class="operator">=</span> color.getRed();</span><br><span class="line">    <span class="type">int</span> <span class="variable">green</span> <span class="operator">=</span> color.getGreen();</span><br><span class="line">    <span class="type">int</span> <span class="variable">blue</span> <span class="operator">=</span> color.getBlue();</span><br><span class="line">    <span class="type">int</span> <span class="variable">alpha</span> <span class="operator">=</span> <span class="number">255</span>;</span><br><span class="line">    consumer.vertex(matrix4f, x1, y1, <span class="number">0.0F</span>)</span><br><span class="line">            .color(red, green, blue, alpha)</span><br><span class="line">            .uv(<span class="number">0.0F</span>, <span class="number">0.0F</span>)</span><br><span class="line">            .overlayCoords(OverlayTexture.NO_OVERLAY)</span><br><span class="line">            .uv2(i)</span><br><span class="line">            .normal(matrix3f, <span class="number">0.0F</span>, <span class="number">1.0F</span>, <span class="number">0.0F</span>)</span><br><span class="line">            .endVertex();</span><br><span class="line"></span><br><span class="line">    consumer.vertex(matrix4f, size, y1, <span class="number">0.0F</span>)</span><br><span class="line">            .color(red, green, blue, alpha)</span><br><span class="line">            .uv(<span class="number">1.0F</span>, <span class="number">0.0F</span>)</span><br><span class="line">            .overlayCoords(OverlayTexture.NO_OVERLAY)</span><br><span class="line">            .uv2(i)</span><br><span class="line">            .normal(matrix3f, <span class="number">0.0F</span>, <span class="number">1.0F</span>, <span class="number">0.0F</span>)</span><br><span class="line">            .endVertex();</span><br><span class="line"></span><br><span class="line">    consumer.vertex(matrix4f, size, size, <span class="number">0.0F</span>)</span><br><span class="line">            .color(red, green, blue, alpha)</span><br><span class="line">            .uv(<span class="number">1.0F</span>, <span class="number">1.0F</span>)</span><br><span class="line">            .overlayCoords(OverlayTexture.NO_OVERLAY)</span><br><span class="line">            .uv2(i)</span><br><span class="line">            .normal(matrix3f, <span class="number">0.0F</span>, <span class="number">1.0F</span>, <span class="number">0.0F</span>)</span><br><span class="line">            .endVertex();</span><br><span class="line"></span><br><span class="line">    consumer.vertex(matrix4f, x1, size, <span class="number">0.0F</span>)</span><br><span class="line">            .color(red, green, blue, alpha)</span><br><span class="line">            .uv(<span class="number">0.0F</span>, <span class="number">1.0F</span>)</span><br><span class="line">            .overlayCoords(OverlayTexture.NO_OVERLAY)</span><br><span class="line">            .uv2(i)</span><br><span class="line">            .normal(matrix3f, <span class="number">0.0F</span>, <span class="number">1.0F</span>, <span class="number">0.0F</span>)</span><br><span class="line">            .endVertex();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>接下来，一个彩色弹幕，有外围色彩部分和中心白色部分，所以我们需要有两个白色贴图和对应的RenderType对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">ResourceLocation</span> <span class="variable">TEXTURE_IN</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ResourceLocation</span>(<span class="string">&quot;lively_danmaku&quot;</span>, <span class="string">&quot;textures/entity/danmaku_in.png&quot;</span>);</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">ResourceLocation</span> <span class="variable">TEXTURE_OUT</span> <span class="operator">=</span> <span class="keyword">new</span> <span class="title class_">ResourceLocation</span>(<span class="string">&quot;lively_danmaku&quot;</span>, <span class="string">&quot;textures/entity/danmaku_out.png&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">RenderType</span> <span class="variable">RENDER_TYPE_IN</span> <span class="operator">=</span> RenderType.entityCutoutNoCull(TEXTURE_IN);</span><br><span class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">RenderType</span> <span class="variable">RENDER_TYPE_OUT</span> <span class="operator">=</span> RenderType.entityCutoutNoCull(TEXTURE_OUT);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>在render方法中，我们需要对这个平面进行旋转以正对玩家</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">poseStack.mulPose(<span class="built_in">this</span>.entityRenderDispatcher.cameraOrientation());</span><br><span class="line">poseStack.mulPose(Axis.YP.rotationDegrees(<span class="number">180.0F</span>));</span><br></pre></td></tr></table></figure>
+
+<p>最后把一个外环绘制在特定颜色遮罩的平面上来实现彩色环，把中心白色部分绘制在白色遮罩上。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">VertexConsumer</span> <span class="variable">vertexConsumer1</span> <span class="operator">=</span> pBuffer.getBuffer(RENDER_TYPE_IN);</span><br><span class="line">renderSquare(vertexConsumer1, matrix4f, matrix3f, pPackedLight, danmaku.getSize(), Color.white.getRGB());</span><br><span class="line"><span class="type">VertexConsumer</span> <span class="variable">vertexConsumer2</span> <span class="operator">=</span> pBuffer.getBuffer(RENDER_TYPE_OUT);</span><br><span class="line">renderSquare(vertexConsumer2, matrix4f, matrix3f, pPackedLight, danmaku.getSize(), danmaku.getColor());</span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/Crystal1921/LivelyDanmaku/blob/main/src/main/java/com/tutorial/lively_danmaku/entity/render/DanmakuRender.java">https://github.com/Crystal1921/LivelyDanmaku/blob/main/src/main/java/com/tutorial/lively_danmaku/entity/render/DanmakuRender.java</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/" data-id="clsor5xd60008g47th7it9igf" data-title="彩色弹幕渲染" class="article-share-link">Share</a>
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mc/" rel="tag">mc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mod/" rel="tag">mod</a></li></ul>
+
+
+    </footer>
+  </div>
+  
+    
+  <nav id="article-nav" class="wow fadeInUp">
+    
+      <div class="article-nav-link-wrap article-nav-link-left">
+        
+          
+          
+            <img data-src="/covers/93252217_p0_master1200.jpg" data-sizes="auto" alt="关于客户端类的一个坑" class="lazyload">
+          
+        
+        <a href="/2024/02/16/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/"></a>
+        <div class="article-nav-caption">Newer</div>
+        <h3 class="article-nav-title">
+          
+            关于客户端类的一个坑
+          
+        </h3>
+      </div>
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/QQ图片20240130012946.jpg" data-sizes="auto" alt="声音事件的注册" class="lazyload">
+        
+      
+      <a href="/2024/02/15/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          声音事件的注册
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
+
+
+
+</section>
+          
+            <aside id="sidebar">
+  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
+  <div class="sidebar-author-name">Crystal1921</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+    
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
+    
+  </div>
+
+  
+</aside>
+
+          
+        </div>
+        <footer id="footer" class="wow fadeInUp">
+  <div style="width: 100%; overflow: hidden">
+    <div class="footer-line"></div>
+  </div>
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      <div>
+        <span class="icon-copyright"></span>
+        2020-2024
+        <span class="footer-info-sep"></span>
+        Crystal1921
+      </div>
+      
+        <div>
+          Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>&nbsp;
+          Theme.<a href="https://github.com/D-Sketon/hexo-theme-reimu" target="_blank">Reimu</a>
+        </div>
+      
+      
+        <div>
+          <span class="icon-brush"></span>
+          4.7k
+          &nbsp;|&nbsp;
+          <span class="icon-coffee"></span>
+          00:16
+        </div>
+      
+      
+        <div>
+          <span class="icon-eye"></span>
+          <span id="busuanzi_container_site_pv">Number of visits&nbsp;<span id="busuanzi_value_site_pv"></span></span>
+          &nbsp;|&nbsp;
+          <span class="icon-user"></span>
+          <span id="busuanzi_container_site_uv">Number of visitors&nbsp;<span id="busuanzi_value_site_uv"></span></span>
+        </div>
+      
+    </div>
+  </div>
+</footer>
+
+        <div class="sidebar-top">
+          <img src="/images/taichi.png" height="50" width="50" />
+          <div class="arrow-up"></div>
+        </div>
+        <div id="mask"></div>
+      </div>
+      <nav id="mobile-nav">
+  <div class="sidebar-wrap">
+    
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
+  <div class="sidebar-author-name">Crystal1921</div>
+  <div class="sidebar-description"></div>
+</div>
+<div class="sidebar-state">
+  <div class="sidebar-state-article">
+    <div>Posts</div>
+    <div class="sidebar-state-number">9</div>
+  </div>
+  <div class="sidebar-state-category">
+    <div>Categories</div>
+    <div class="sidebar-state-number">0</div>
+  </div>
+  <div class="sidebar-state-tag">
+    <div>Tags</div>
+    <div class="sidebar-state-number">8</div>
+  </div>
+</div>
+<div class="sidebar-social">
+  
+</div>
+<div class="sidebar-menu">
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">Home</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/archives"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">Archives</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/about"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">About</div>
+    </div>
+  
+    <div class="sidebar-menu-link-wrap">
+      <a class="sidebar-menu-link-dummy" href="/friend"></a>
+      <span class="sidebar-menu-icon"></span>
+      <div class="sidebar-menu-link">Friend</div>
+    </div>
+  
+</div>
+</div>
+    
+  </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
+  
+</nav>
+
+    </div>
+    <div class="site-search">
+      <div class="reimu-popup popup">
+        <div class="reimu-search">
+          <span class="reimu-search-input-icon"></span>
+          <div class="reimu-search-input" id="reimu-search-input"></div>
+        </div>
+        <div class="reimu-results">
+          <div id="reimu-stats"></div>
+          <div id="reimu-hits"></div>
+          <div id="reimu-pagination" class="reimu-pagination"></div>
+        </div>
+        <span class="popup-btn-close"></span>
+      </div>
+    </div>
+    
+<script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
+
+
+<script src="https://npm.webcache.cn/clipboard@2.0.11/dist/clipboard.min.js"></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
+
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
+
+
+
+
+
+<script src="/js/pjax_script.js" data-pjax></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+<script src="https://npm.webcache.cn/mouse-firework@0.0.4/dist/index.umd.js"></script>
+
+  <script>
+    firework(JSON.parse('{"excludeElements":["a"],"particles":[{"shape":"circle","move":["emit"],"easing":"easeOutExpo","colors":["#ff5252","#ff7c7c","#ffafaf","#ffd0d0"],"number":20,"duration":[1200,1800],"shapeOptions":{"radius":[16,32],"alpha":[0.3,0.5]}},{"shape":"circle","move":["diffuse"],"easing":"easeOutExpo","colors":["#ff0000"],"number":1,"duration":[1200,1800],"shapeOptions":{"radius":20,"alpha":[0.2,0.5],"lineWidth":6}}]}'))
+  </script>
+
+
+
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+  <script>
+    console.log(String.raw`%c 
+ ______     ______     __     __    __     __  __    
+/\  == \   /\  ___\   /\ \   /\ "-./  \   /\ \/\ \   
+\ \  __<   \ \  __\   \ \ \  \ \ \-./\ \  \ \ \_\ \  
+ \ \_\ \_\  \ \_____\  \ \_\  \ \_\ \ \_\  \ \_____\ 
+  \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
+                                                  
+`,'color: #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.1.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+  </script>
+  
+
+  <!-- hexo injector body_end start -->
+<script src="/js/insert_highlight.js" data-pjax></script>
+<!-- hexo injector body_end end --></body>
+  </html>
+
