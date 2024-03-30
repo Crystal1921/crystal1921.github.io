@@ -9,7 +9,7 @@
 
   
   <title>
-    Tag: 明日方舟 |
+    获取所有粒子 |
     
     Hexo
   </title>
@@ -23,12 +23,19 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://crystal1921.github.io/tags/%E6%98%8E%E6%97%A5%E6%96%B9%E8%88%9F/index.html">
+  <meta name="description" content="前言在做弹幕踪迹台之前，首先得拿到mc内所有的粒子类型来让玩家选择。 mc原版粒子都在ParticleTypes类内，只需要把这个类里面所有的静态对象穷举为一个列表，即可解决问题，但这么做显然非常不优雅，而且，不兼容其他模组添加到粒子 当然也有planB，通过AccessTransformer，在ParticleEngine中拿到私有对象providers，是的，所有粒子也会在这里注册一遍。 附录">
+<meta property="og:type" content="article">
+<meta property="og:title" content="获取所有粒子">
+<meta property="og:url" content="https://crystal1921.github.io/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="前言在做弹幕踪迹台之前，首先得拿到mc内所有的粒子类型来让玩家选择。 mc原版粒子都在ParticleTypes类内，只需要把这个类里面所有的静态对象穷举为一个列表，即可解决问题，但这么做显然非常不优雅，而且，不兼容其他模组添加到粒子 当然也有planB，通过AccessTransformer，在ParticleEngine中拿到私有对象providers，是的，所有粒子也会在这里注册一遍。 附录">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-03-30T17:22:16.431Z">
+<meta property="article:modified_time" content="2024-03-30T17:59:16.843Z">
 <meta property="article:author" content="Crystal1921">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="mod">
+<meta property="article:tag" content="mc">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -151,7 +158,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.jpg" alt="">
+    <img fetchpriority="high" src="/images/banner.jpg" alt="获取所有粒子">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -160,7 +167,7 @@
           
           
             <a href="/" id="logo">
-              <h1>Tags</h1>
+              <h1>获取所有粒子</h1>
             </a>
           
         
@@ -168,8 +175,6 @@
       
         
         <h2 id="subtitle-wrap">
-          
-            <a href="/" id="subtitle">明日方舟</a>
           
         </h2>
       
@@ -179,90 +184,95 @@
 
         <div id="content" class="outer">
           
-          <section id="main">
-<div class="archives-outer-wrap wow fadeInUp">
-  <div class="tag-wrap">
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/java/">java</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/mod/">mod</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/mc/">mc</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/生活/">生活</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/动漫社/">动漫社</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/明日方舟/">明日方舟</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/上海/">上海</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/随笔/">随笔</a>
-      </div>
-    
-  </div>
-  <div class="category-wrap">
-    
-  </div>
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap wow fadeInUp">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-          <ul>
-            
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/02/16/%E4%B8%8A%E6%B5%B7%E9%9F%B3%E5%BE%8B%E8%81%94%E8%A7%89%E4%B9%8B%E6%97%85/">
-      <time class="dt-published" datetime="2024-02-16T15:10:57.189Z" itemprop="datePublished">02-16</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/02/16/%E4%B8%8A%E6%B5%B7%E9%9F%B3%E5%BE%8B%E8%81%94%E8%A7%89%E4%B9%8B%E6%97%85/">上海音律联觉之旅</a>
-      
-    
-  </div>
-</li>
+          <section id="main"><article id="post-获取所有粒子" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    <div class="article-meta">
+      <div class="article-date wow slideInLeft">
+  <a href="/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/" class="article-date-link">
+    <time datetime="2024-03-30T17:22:16.431Z" itemprop="datePublished">2024-03-31</time>
+  </a>
+</div>
 
-            
-            
-          </ul>
-        </div>
-      </section>
-  
+      
+
+    </div>
+    <div class="hr-line"></div>
+    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>在做弹幕踪迹台之前，首先得拿到mc内所有的粒子类型来让玩家选择。</p>
+<p>mc原版粒子都在ParticleTypes类内，只需要把这个类里面所有的静态对象穷举为一个列表，即可解决问题，但这么做显然非常不优雅，而且，不兼容其他模组添加到粒子</p>
+<p>当然也有planB，通过AccessTransformer，在ParticleEngine中拿到私有对象providers，是的，所有粒子也会在这里注册一遍。</p>
+<p>附录：<br>1.显然，你需要一个Particle类，负责粒子的具体逻辑;<br>2.我们当然还需要指定粒子对应的ParticleType，这样才能知道谁是谁;<br>3.还要一个ParticleOption，这样才能方便粒子生成的消息通过网络传输，以及指令生成;<br>4.一个ParticleProvider，类似一个工厂类，将ParticleOption转换为Particle。</p>
+<p>生成一个粒子要找四家，真不愧是你啊，麻将</p>
+<h2 id="正文"><a href="#正文" class="headerlink" title="正文"></a>正文</h2><p>我想到mc原版指令Particle有一个命令提示，那里拿到了全部的粒子。然后顺藤摸瓜找到了ParticleArgument类的particles字段，它在初始化的时候拿到了所有注册在Registries.PARTICLE_TYPE下的ParticleType&lt;?&gt;。看到这里，我感觉这个就是我需要的东西。</p>
+<p>下面就是打断点，看调用链，找到是哪个方法初始化了这个字段，找到了HolderLookup类的lookupOrThrow方法，传入一个ResourceKey&lt;? extends Registry&lt;? extends T&gt;&gt;对象，但这里似乎已经走进了一个死胡同，我该怎么调用这个方法呢</p>
+<p>功夫不负有心人，我找到这个方法的实现方法，RegistryAccess类的lookupOrThrow方法，可以向它直接传入Registries.PARTICLE_TYPE</p>
+<p>在给这个方法打断点寻找后，按着调用链，找到了RegistryLayer类的静态方法createRegistryAccess()，再调用compositeAccess返回一个列表内有全部注册表对象的RegistryAccess对象</p>
+<p>万事俱备，只需如下代码即可拿到所有的粒子，顺便打印出来</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">getParticle</span><span class="params">()</span> &#123;</span><br><span class="line">    RegistryAccess.<span class="type">Frozen</span> <span class="variable">access</span> <span class="operator">=</span> createRegistryAccess().compositeAccess();</span><br><span class="line">    ResourceKey&lt;Registry&lt;ParticleType&lt;?&gt;&gt;&gt; type = Registries.PARTICLE_TYPE;</span><br><span class="line">    HolderLookup.RegistryLookup&lt;ParticleType&lt;?&gt;&gt; particle = access.lookupOrThrow(type);</span><br><span class="line">    particle.listElementIds().forEach(particleTypeResourceKey -&gt; System.out.println(particleTypeResourceKey.toString()));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>打印部分结果如下</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="title class_">ResourceKey</span>[<span class="attr">minecraft</span>:particle_type / <span class="attr">minecraft</span>:ambient_entity_effect]</span><br><span class="line"><span class="title class_">ResourceKey</span>[<span class="attr">minecraft</span>:particle_type / <span class="attr">minecraft</span>:angry_villager]</span><br><span class="line"><span class="title class_">ResourceKey</span>[<span class="attr">minecraft</span>:particle_type / <span class="attr">minecraft</span>:block]</span><br><span class="line"><span class="title class_">ResourceKey</span>[<span class="attr">minecraft</span>:particle_type / <span class="attr">minecraft</span>:block_marker]</span><br><span class="line"><span class="title class_">ResourceKey</span>[<span class="attr">minecraft</span>:particle_type / <span class="attr">minecraft</span>:bubble]</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://crystal1921.github.io/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/" data-id="clueed8ie0000rc7t4sm935aa" data-title="获取所有粒子" class="article-share-link">Share</a>
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mc/" rel="tag">mc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mod/" rel="tag">mod</a></li></ul>
+
+
+    </footer>
   </div>
+  
+    
+  <nav id="article-nav" class="wow fadeInUp">
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/QQ图片20240227215033.jpg" data-sizes="auto" alt="彩色物品注册" class="lazyload">
+        
+      
+      <a href="/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          彩色物品注册
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
+  
+</article>
+
+
+
 
 
 
 </section>
           
             <aside id="sidebar">
-  <div class="sidebar-wrap wow fadeInRight ">
+  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
@@ -311,8 +321,13 @@
     </div>
   
 </div>
-
+</div>
     
+    
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
     
   </div>
 
@@ -371,7 +386,12 @@
       <nav id="mobile-nav">
   <div class="sidebar-wrap">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%AD%A3%E6%96%87"><span class="toc-number">2.</span> <span class="toc-text">正文</span></a></li></ol></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
@@ -420,9 +440,14 @@
     </div>
   
 </div>
-
+</div>
     
   </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
   
 </nav>
 
