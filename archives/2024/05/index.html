@@ -9,7 +9,7 @@
 
   
   <title>
-    彩色物品注册 |
+    Archives: 2024/5 |
     
     Hexo
   </title>
@@ -23,19 +23,12 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta name="description" content="当你想要有一个跟原版的刷怪蛋，染色皮革盔甲一样，随着NBT改变颜色的物品时，你就需要像下面一样注册一个彩色渲染 首先，让我们看看原版是怎么实现的，在ItemRender类里面我们看到了这么个对象 ItemColor ，在renderQuadList方法中，会调用这个对象的getColor方法，拿到一个颜色，然后把这个颜色作为这个面的遮罩。 ItemColor类内默认注册了很多原版物品，好在这里有一">
-<meta property="og:type" content="article">
-<meta property="og:title" content="彩色物品注册">
-<meta property="og:url" content="https://crystal1921.github.io/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/index.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://crystal1921.github.io/archives/2024/05/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="当你想要有一个跟原版的刷怪蛋，染色皮革盔甲一样，随着NBT改变颜色的物品时，你就需要像下面一样注册一个彩色渲染 首先，让我们看看原版是怎么实现的，在ItemRender类里面我们看到了这么个对象 ItemColor ，在renderQuadList方法中，会调用这个对象的getColor方法，拿到一个颜色，然后把这个颜色作为这个面的遮罩。 ItemColor类内默认注册了很多原版物品，好在这里有一">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2024-03-21T15:26:46.285Z">
-<meta property="article:modified_time" content="2024-03-21T15:58:28.787Z">
 <meta property="article:author" content="Crystal1921">
-<meta property="article:tag" content="java">
-<meta property="article:tag" content="mod">
-<meta property="article:tag" content="mc">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -158,7 +151,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.jpg" alt="彩色物品注册">
+    <img fetchpriority="high" src="/images/banner.jpg" alt="">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -167,7 +160,7 @@
           
           
             <a href="/" id="logo">
-              <h1>彩色物品注册</h1>
+              <h1>Archives</h1>
             </a>
           
         
@@ -184,109 +177,94 @@
 
         <div id="content" class="outer">
           
-          <section id="main"><article id="post-彩色物品注册" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-inner">
-    <div class="article-meta">
-      <div class="article-date wow slideInLeft">
-  <a href="/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/" class="article-date-link">
-    <time datetime="2024-03-21T15:26:46.285Z" itemprop="datePublished">2024-03-21</time>
-  </a>
-</div>
-
-      
-
-    </div>
-    <div class="hr-line"></div>
+          <section id="main">
+<div class="archives-outer-wrap wow fadeInUp">
+  <div class="tag-wrap">
     
-
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>当你想要有一个跟原版的刷怪蛋，染色皮革盔甲一样，随着NBT改变颜色的物品时，你就需要像下面一样注册一个彩色渲染</p>
-<p>首先，让我们看看原版是怎么实现的，在ItemRender类里面我们看到了这么个对象 ItemColor ，在renderQuadList方法中，会调用这个对象的getColor方法，拿到一个颜色，然后把这个颜色作为这个面的遮罩。</p>
-<p>ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提供的钩子可以给开发者把自己模组的物品添加进去<br>net.minecraftforge.client.ForgeHooksClient.onItemColorsInit(itemcolors, pColors);</p>
-<p>现在我们只需要订阅这个事件RegisterColorHandlersEvent.Item evt来实现这个功能</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mod</span>.EventBusSubscriber(value = Dist.CLIENT, modid = Utils.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)</span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">ClientEvent</span> &#123;</span><br><span class="line">    <span class="meta">@SubscribeEvent(priority = EventPriority.LOW)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">onColorRegister</span><span class="params">(RegisterColorHandlersEvent.Item evt)</span></span><br><span class="line">    &#123;</span><br><span class="line">        evt.register(</span><br><span class="line">                (pStack, pTintIndex) -&gt;</span><br><span class="line">                        pTintIndex == <span class="number">0</span> ? -<span class="number">1</span> : ((DanmakuItem)pStack.getItem()).getColor(pStack),</span><br><span class="line">                ItemRegistry.ItemDanmaku.get()</span><br><span class="line">        );</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>可以通过事件的register方法，使用ItemColor类内部的register方法，来把模组物品注册进去<br>这个方法有两个参数(ItemColor itemColor, ItemLike… items)<br>在示例中，第二个参数是要注册的物品，可以写多个Item对象<br>我们通过lambda表达式新建了一个ItemColor对象作为第一个参数，这里的pTintIndex指的是材质里的层</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;parent&quot;</span><span class="punctuation">:</span> <span class="string">&quot;item/generated&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;textures&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;layer0&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lively_danmaku:item/danmaku_in&quot;</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;layer1&quot;</span><span class="punctuation">:</span> <span class="string">&quot;lively_danmaku:item/danmaku_out&quot;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>在这个danmaku.json中，我们看到有两个材质文件，他们分别对应着pTintIndex&#x3D;0和pTintIndex&#x3D;1<br>在示例中，我们看到，当pTintIndex &#x3D;&#x3D; 0时返回-1，当pTintIndex !&#x3D; 0时，返回了DanmakuItem类里的getColor方法<br>也就是说，会对第二个贴图danmaku_out进行染色</p>
-<p>这时候，我们就可以在DanmakuItem类里定义一个getColor方法，返回物品NBT中的颜色参数</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">getColor</span><span class="params">(ItemStack itemStack)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (itemStack.getOrCreateTag().get(<span class="string">&quot;danmaku_color&quot;</span>) != <span class="literal">null</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> Integer.parseInt(String.valueOf(itemStack.getOrCreateTag().get(<span class="string">&quot;danmaku_color&quot;</span>)));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> Color.WHITE.getRGB();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>到现在，我们就完成了对模组物品的特定层数的贴图的自定义颜色渲染</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://crystal1921.github.io/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/" data-id="clu1f32ux0000687t3s658hwf" data-title="彩色物品注册" class="article-share-link">Share</a>
-      
-      
-      
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mc/" rel="tag">mc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mod/" rel="tag">mod</a></li></ul>
-
-
-    </footer>
-  </div>
-  
-    
-  <nav id="article-nav" class="wow fadeInUp">
-    
-      <div class="article-nav-link-wrap article-nav-link-left">
-        
-          
-          
-            <img data-src="/covers/114840070_p0_master1200.jpg" data-sizes="auto" alt="获取所有粒子" class="lazyload">
-          
-        
-        <a href="/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/"></a>
-        <div class="article-nav-caption">Newer</div>
-        <h3 class="article-nav-title">
-          
-            获取所有粒子
-          
-        </h3>
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/java/">java</a>
       </div>
     
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/mod/">mod</a>
+      </div>
     
-    <div class="article-nav-link-wrap article-nav-link-right">
-      
-        
-        
-          <img data-src="/covers/100077193_p0_master1200.jpg" data-sizes="auto" alt="模组联动-本地" class="lazyload">
-        
-      
-      <a href="/2024/02/16/%E6%A8%A1%E7%BB%84%E8%81%94%E5%8A%A8-%E6%9C%AC%E5%9C%B0/"></a>
-      <div class="article-nav-caption">Older</div>
-      <h3 class="article-nav-title">
-        
-          模组联动-本地
-        
-      </h3>
-    </div>
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/mc/">mc</a>
+      </div>
     
-  </nav>
-
-
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/生活/">生活</a>
+      </div>
+    
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/动漫社/">动漫社</a>
+      </div>
+    
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/明日方舟/">明日方舟</a>
+      </div>
+    
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/上海/">上海</a>
+      </div>
+    
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/随笔/">随笔</a>
+      </div>
+    
+      <div class="archives-tag-list-item">
+        <a class="archives-tag-list-link" href="/tags/东方Project/">东方Project</a>
+      </div>
+    
+  </div>
+  <div class="category-wrap">
+    
+  </div>
   
-</article>
+  
+    
+    
+      
+      
+      <section class="archives-wrap wow fadeInUp">
+        <div class="archive-year-wrap">
+          <a href="/archives/2024" class="archive-year">2024</a>
+        </div>
+        <div class="archives">
+          <ul>
+            
+            <li class="archive-article">
+  <div class="archive-article-date-wrap">
+    <a href="/2024/05/05/2024-5%E6%9C%88%E4%B8%8A%E6%B5%B7%E6%B8%B8%E8%AE%B0/">
+      <time class="dt-published" datetime="2024-05-05T15:14:59.431Z" itemprop="datePublished">05-05</time>
+    </a>
+  </div>
+  <div class="archive-article-title-wrap">
+    
+      
+        <a class="archive-article-title" href="/2024/05/05/2024-5%E6%9C%88%E4%B8%8A%E6%B5%B7%E6%B8%B8%E8%AE%B0/">2024-5月上海游记</a>
+      
+    
+  </div>
+</li>
 
-
-
+            
+            
+          </ul>
+        </div>
+      </section>
+  
+  </div>
 
 
 
 </section>
           
             <aside id="sidebar">
-  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
+  <div class="sidebar-wrap wow fadeInRight ">
     
-      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">Contents</h3>
-  <div class="sidebar-toc-wrapper"></div>
-</div>
-</div>
-      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+      <div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
@@ -335,13 +313,8 @@
     </div>
   
 </div>
-</div>
+
     
-    
-      <div class="sidebar-btn-wrapper" style="position:static">
-        <div class="sidebar-toc-btn current"></div>
-        <div class="sidebar-common-btn"></div>
-      </div>
     
   </div>
 
@@ -400,12 +373,7 @@
       <nav id="mobile-nav">
   <div class="sidebar-wrap">
     
-      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
-  <h3 class="toc-title">Contents</h3>
-  <div class="sidebar-toc-wrapper"></div>
-</div>
-</div>
-      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
+      <div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
@@ -454,14 +422,9 @@
     </div>
   
 </div>
-</div>
+
     
   </div>
-  
-    <div class="sidebar-btn-wrapper">
-      <div class="sidebar-toc-btn current"></div>
-      <div class="sidebar-common-btn"></div>
-    </div>
   
 </nav>
 
