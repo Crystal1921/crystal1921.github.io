@@ -9,7 +9,7 @@
 
   
   <title>
-    Tag: mc |
+    ChiselsBits阅读笔记 |
     
     Hexo
   </title>
@@ -23,12 +23,19 @@
   
 <link rel="stylesheet" href="/css/loader.css">
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="https://crystal1921.github.io/tags/mc/index.html">
+  <meta name="description" content="梳理一下最近阅读雕凿工艺Chisels &amp; Bits的工作方法 对于任意雕刻方块来说，渲染线程会尝试拿到他的模型。方块实体是DataAwareChiseledBlockBakedModel类的getModelData方法。物品是DataAwareChiseledBlockBakedModel类的匿名内部类，覆写ItemOverrides的resolve方法 这两个最后都指向Chiseled">
+<meta property="og:type" content="article">
+<meta property="og:title" content="ChiselsBits阅读笔记">
+<meta property="og:url" content="https://crystal1921.github.io/2024/06/01/ChiselsBits%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="梳理一下最近阅读雕凿工艺Chisels &amp; Bits的工作方法 对于任意雕刻方块来说，渲染线程会尝试拿到他的模型。方块实体是DataAwareChiseledBlockBakedModel类的getModelData方法。物品是DataAwareChiseledBlockBakedModel类的匿名内部类，覆写ItemOverrides的resolve方法 这两个最后都指向Chiseled">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2024-05-31T16:41:08.941Z">
+<meta property="article:modified_time" content="2024-06-03T16:53:36.554Z">
 <meta property="article:author" content="Crystal1921">
+<meta property="article:tag" content="java">
+<meta property="article:tag" content="mod">
+<meta property="article:tag" content="mc">
 <meta name="twitter:card" content="summary">
   
     <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
@@ -151,7 +158,7 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.jpg" alt="">
+    <img fetchpriority="high" src="/images/banner.jpg" alt="ChiselsBits阅读笔记">
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -160,7 +167,7 @@
           
           
             <a href="/" id="logo">
-              <h1>Tags</h1>
+              <h1>ChiselsBits阅读笔记</h1>
             </a>
           
         
@@ -168,8 +175,6 @@
       
         
         <h2 id="subtitle-wrap">
-          
-            <a href="/" id="subtitle">mc</a>
           
         </h2>
       
@@ -179,202 +184,91 @@
 
         <div id="content" class="outer">
           
-          <section id="main">
-<div class="archives-outer-wrap wow fadeInUp">
-  <div class="tag-wrap">
+          <section id="main"><article id="post-ChiselsBits阅读笔记" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-inner">
+    <div class="article-meta">
+      <div class="article-date wow slideInLeft">
+  <a href="/2024/06/01/ChiselsBits%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" class="article-date-link">
+    <time datetime="2024-05-31T16:41:08.941Z" itemprop="datePublished">2024-06-01</time>
+  </a>
+</div>
+
+      
+
+    </div>
+    <div class="hr-line"></div>
     
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/java/">java</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/mod/">mod</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/mc/">mc</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/生活/">生活</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/动漫社/">动漫社</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/明日方舟/">明日方舟</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/上海/">上海</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/随笔/">随笔</a>
-      </div>
-    
-      <div class="archives-tag-list-item">
-        <a class="archives-tag-list-link" href="/tags/东方Project/">东方Project</a>
-      </div>
-    
-  </div>
-  <div class="category-wrap">
-    
+
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>梳理一下最近阅读雕凿工艺Chisels &amp; Bits的工作方法</p>
+<p>对于任意雕刻方块来说，渲染线程会尝试拿到他的模型。<br>方块实体是DataAwareChiseledBlockBakedModel类的getModelData方法。<br>物品是DataAwareChiseledBlockBakedModel类的匿名内部类，覆写ItemOverrides的resolve方法</p>
+<p>这两个最后都指向ChiseledBlockSmartModel类的getOrCreateBakedModel方法，这个方法的作用就是拿到缓存中已有的模型，如果没有就生成，烘焙一个模型。</p>
+<p>getOrCreateBakedModel有很多重载方法，目的是从物品NBT或者方块实体的数据中拿到用于储存雕刻数据的VoxelBlob对象，把这个对象与缓存中的进行比对，如果有就直接获取，如果没有就构建一个新的ChiseledBlockBakedModel对象，并写入缓存。</p>
+<p>在初始化ChiseledBlockBakedModel对象中，根据传入的VoxelBlob体素数据，在generateFaces中构建模型并烘焙。<br>首先分别按照体素数据在三个方向上构建面，然后合并可以合并的面，再写入顶点数据，烘焙成BakedQuad<br>最终建立一个体素数据和对应的烘焙模型的，写进缓存，避免多次烘焙同一个模型</p>
+<p>VoxelBlob本质上是一个BitSet(4096)，也就是16^3，用来储存一个方块里所有小方块的数据。通过如下方法固定hash值，并覆写判断方法，来实现判断两个VoxelBlob对象中的数据是否相同，保证缓存中不会出现相同的VoxelBlob对象</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">equals</span><span class="params">(<span class="keyword">final</span> Object o)</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="built_in">this</span> == o) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (!(o <span class="keyword">instanceof</span> VoxelBlob)) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">final</span> <span class="type">VoxelBlob</span> <span class="variable">voxelBlob</span> <span class="operator">=</span> (VoxelBlob) o;</span><br><span class="line">    <span class="keyword">return</span> detail == voxelBlob.detail &amp;&amp; Arrays.equals(values, voxelBlob.values);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Override</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">int</span> <span class="title function_">hashCode</span><span class="params">()</span> &#123;</span><br><span class="line">    <span class="type">int</span> <span class="variable">result</span> <span class="operator">=</span> Objects.hash(detail);</span><br><span class="line">    result = <span class="number">31</span> * result + Arrays.hashCode(values);</span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>之前碰到的很多bug是由ClientSide的showGhost方法引起的，这个方法的作用是渲染一个预览的方块，但是这个方法中只往缓存中写了VoxelBlobStateReference，但是没有调用getOrCreateBakedModel生成对应的烘焙模型，而且其他体素数据相同的模型会在缓存中拿到一个空面的模型，并不会尝试生成模型，导致没有正确渲染。<br>后来尝试了很多办法，比如在中键获取方块模型的时候提起烘焙四个旋转方向的模型，但是由于在渲染时序中，renderLevel要比renderItemInHand先执行，还是会有相同的问题，治标不治本，最后只能修复showGhost方法。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="https://crystal1921.github.io/2024/06/01/ChiselsBits%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/" data-id="clwz749570000l87tfmx283ii" data-title="ChiselsBits阅读笔记" class="article-share-link">Share</a>
+      
+      
+      
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/java/" rel="tag">java</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mc/" rel="tag">mc</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mod/" rel="tag">mod</a></li></ul>
+
+
+    </footer>
   </div>
   
+    
+  <nav id="article-nav" class="wow fadeInUp">
+    
+    
+    <div class="article-nav-link-wrap article-nav-link-right">
+      
+        
+        
+          <img data-src="/covers/112291095_p0_master1200.jpg" data-sizes="auto" alt="2024-5-Journey" class="lazyload">
+        
+      
+      <a href="/2024/05/05/2024-5%E6%9C%88%E4%B8%8A%E6%B5%B7%E6%B8%B8%E8%AE%B0/"></a>
+      <div class="article-nav-caption">Older</div>
+      <h3 class="article-nav-title">
+        
+          2024-5-Journey
+        
+      </h3>
+    </div>
+    
+  </nav>
+
+
   
-    
-    
-      
-      
-      <section class="archives-wrap wow fadeInUp">
-        <div class="archive-year-wrap">
-          <a href="/archives/2024" class="archive-year">2024</a>
-        </div>
-        <div class="archives">
-          <ul>
-            
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/06/01/ChiselsBits%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">
-      <time class="dt-published" datetime="2024-05-31T16:41:08.941Z" itemprop="datePublished">06-01</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/06/01/ChiselsBits%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/">ChiselsBits阅读笔记</a>
-      
-    
-  </div>
-</li>
+</article>
 
-            
-    
-    
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/">
-      <time class="dt-published" datetime="2024-03-30T17:22:16.431Z" itemprop="datePublished">03-31</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/">获取所有粒子</a>
-      
-    
-  </div>
-</li>
 
-            
-    
-    
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/">
-      <time class="dt-published" datetime="2024-03-21T15:26:46.285Z" itemprop="datePublished">03-21</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/">彩色物品注册</a>
-      
-    
-  </div>
-</li>
 
-            
-    
-    
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/02/16/%E6%A8%A1%E7%BB%84%E8%81%94%E5%8A%A8-%E6%9C%AC%E5%9C%B0/">
-      <time class="dt-published" datetime="2024-02-16T15:49:05.803Z" itemprop="datePublished">02-16</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/02/16/%E6%A8%A1%E7%BB%84%E8%81%94%E5%8A%A8-%E6%9C%AC%E5%9C%B0/">模组联动-本地</a>
-      
-    
-  </div>
-</li>
-
-            
-    
-    
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/02/16/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/">
-      <time class="dt-published" datetime="2024-02-16T14:35:04.953Z" itemprop="datePublished">02-16</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/02/16/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/">关于客户端类的一个坑</a>
-      
-    
-  </div>
-</li>
-
-            
-    
-    
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/">
-      <time class="dt-published" datetime="2024-02-15T15:41:10.574Z" itemprop="datePublished">02-15</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/">彩色弹幕渲染</a>
-      
-    
-  </div>
-</li>
-
-            
-    
-    
-            <li class="archive-article">
-  <div class="archive-article-date-wrap">
-    <a href="/2024/02/15/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C/">
-      <time class="dt-published" datetime="2024-02-15T14:31:16.853Z" itemprop="datePublished">02-15</time>
-    </a>
-  </div>
-  <div class="archive-article-title-wrap">
-    
-      
-        <a class="archive-article-title" href="/2024/02/15/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C/">声音事件的注册</a>
-      
-    
-  </div>
-</li>
-
-            
-            
-          </ul>
-        </div>
-      </section>
-  
-  </div>
 
 
 
 </section>
           
             <aside id="sidebar">
-  <div class="sidebar-wrap wow fadeInRight ">
+  <div class="sidebar-wrap wow fadeInRight wrap-sticky">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
@@ -423,8 +317,13 @@
     </div>
   
 </div>
-
+</div>
     
+    
+      <div class="sidebar-btn-wrapper" style="position:static">
+        <div class="sidebar-toc-btn current"></div>
+        <div class="sidebar-common-btn"></div>
+      </div>
     
   </div>
 
@@ -483,7 +382,12 @@
       <nav id="mobile-nav">
   <div class="sidebar-wrap">
     
-      <div class="sidebar-author">
+      <div class="sidebar-toc-sidebar"><div class="sidebar-toc">
+  <h3 class="toc-title">Contents</h3>
+  <div class="sidebar-toc-wrapper"></div>
+</div>
+</div>
+      <div class="sidebar-common-sidebar hidden"><div class="sidebar-author">
   <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
@@ -532,9 +436,14 @@
     </div>
   
 </div>
-
+</div>
     
   </div>
+  
+    <div class="sidebar-btn-wrapper">
+      <div class="sidebar-toc-btn current"></div>
+      <div class="sidebar-common-btn"></div>
+    </div>
   
 </nav>
 

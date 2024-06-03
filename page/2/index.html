@@ -181,14 +181,49 @@
   
   <div class="post-wrap-left wow fadeInUp">
     
-      <a class="post-link" href="/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/"></a>
+      <a class="post-link" href="/2024/02/16/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/104473468_p0_master1200.jpg" data-sizes="auto" alt="彩色弹幕渲染" class="lazyload">
+          <img data-src="/covers/103328382_p0.jpg" data-sizes="auto" alt="关于客户端类的一个坑" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <a><span class="icon-calendar"></span>2024-02-16</a>
+        
+          <a><span class="icon-pencil"></span>173 words</a>
+        
+        
+          <a><span class="icon-clock"></span>1 min</a>
+        
+      </div>
+      <h2 class="post-title">关于客户端类的一个坑</h2>
+      <article class="post-article">
+        
+          一般来说，像Screen类这样的客户端类，是不应该被服务端上加载的，因为服务端上没有这些ClientOnly的类。但是如果你把一个静态方法放在Screen类里面，然后从客户端发往服务端的网络包里调用这个静态方法。虽然看似没有新建一个实例，但是jvm会尝试加载这个客户端类，然后引发报错。这个问题在开发环境的本地端无法引发，因为本地上同时有客户端和服务端的类，但是服务端上是没有这个的，如果连接服务器时，就会引发问题。
+
+        
+      </article>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrap-right wow fadeInUp">
+    
+    <a class="post-link" href="/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/"></a>
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/QQ图片20240130012946.jpg" data-sizes="auto" alt="彩色弹幕渲染" class="lazyload">
         
       
     </div>
@@ -216,15 +251,16 @@
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/02/15/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C/"></a>
+      <a class="post-link" href="/2024/02/15/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C/"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/99616255_p0.jpg" data-sizes="auto" alt="声音事件的注册" class="lazyload">
+          <img data-src="/covers/104473468_p0_master1200.jpg" data-sizes="auto" alt="声音事件的注册" class="lazyload">
         
       
     </div>
@@ -251,16 +287,15 @@
 
   
   
-  <div class="post-wrap-left wow fadeInUp">
+  <div class="post-wrap-right wow fadeInUp">
     
-      <a class="post-link" href="/2024/01/23/hello-world/"></a>
+    <a class="post-link" href="/2024/01/23/hello-world/"></a>
     
-    
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/115927849_p0_master1200.jpg" data-sizes="auto" alt="Welcome to Crystal1921&#39;s Blog" class="lazyload">
+          <img data-src="/covers/100077193_p0_master1200.jpg" data-sizes="auto" alt="Welcome to Crystal1921&#39;s Blog" class="lazyload">
         
       
     </div>
@@ -308,7 +343,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -381,10 +416,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          7.6k
+          8.2k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          00:25
+          00:27
         </div>
       
       
@@ -417,7 +452,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>

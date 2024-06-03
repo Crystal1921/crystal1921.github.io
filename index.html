@@ -181,14 +181,51 @@
   
   <div class="post-wrap-left wow fadeInUp">
     
-      <a class="post-link" href="/2024/05/05/2024-5%E6%9C%88%E4%B8%8A%E6%B5%B7%E6%B8%B8%E8%AE%B0/"></a>
+      <a class="post-link" href="/2024/06/01/ChiselsBits%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/112291095_p0_master1200.jpg" data-sizes="auto" alt="2024-5-Journey" class="lazyload">
+          <img data-src="/covers/屏幕截图 2022-09-19 081010.png" data-sizes="auto" alt="ChiselsBits阅读笔记" class="lazyload">
+        
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <a><span class="icon-calendar"></span>2024-06-01</a>
+        
+          <a><span class="icon-pencil"></span>617 words</a>
+        
+        
+          <a><span class="icon-clock"></span>2 mins</a>
+        
+      </div>
+      <h2 class="post-title">ChiselsBits阅读笔记</h2>
+      <article class="post-article">
+        
+          梳理一下最近阅读雕凿工艺Chisels &amp;amp; Bits的工作方法
+对于任意雕刻方块来说，渲染线程会尝试拿到他的模型。方块实体是DataAwareChiseledBlockBakedModel类的getModelData方法。物品是DataAwareChiseledBlockBakedModel类的匿名内部类，覆写ItemOverrides的resolve方法
+这两个最后都指向ChiseledBlockSmartModel类的getOrCreateBakedModel方法，这个方法的作用就是拿到缓存中已有的模型，如果没有就生成，烘焙一个模型。
+getOrCreateBakedModel有很
+        
+      </article>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrap-right wow fadeInUp">
+    
+    <a class="post-link" href="/2024/05/05/2024-5%E6%9C%88%E4%B8%8A%E6%B5%B7%E6%B8%B8%E8%AE%B0/"></a>
+    
+    <div class="post-cover-right">
+      
+        
+        
+          <img data-src="/covers/QQ图片20240118213822.jpg" data-sizes="auto" alt="2024-5-Journey" class="lazyload">
         
       
     </div>
@@ -217,15 +254,16 @@
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/04/21/2024-4-21%E9%9A%8F%E7%AC%94/"></a>
+      <a class="post-link" href="/2024/04/21/2024-4-21%E9%9A%8F%E7%AC%94/"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/100427037_p0_master1200.jpg" data-sizes="auto" alt="2024-4-21随笔" class="lazyload">
+          <img data-src="/covers/99616255_p0.jpg" data-sizes="auto" alt="2024-4-21随笔" class="lazyload">
         
       
     </div>
@@ -251,16 +289,15 @@
 
   
   
-  <div class="post-wrap-left wow fadeInUp">
+  <div class="post-wrap-right wow fadeInUp">
     
-      <a class="post-link" href="/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/"></a>
+    <a class="post-link" href="/2024/03/31/%E8%8E%B7%E5%8F%96%E6%89%80%E6%9C%89%E7%B2%92%E5%AD%90/"></a>
     
-    
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/112291095_p0_master1200.jpg" data-sizes="auto" alt="获取所有粒子" class="lazyload">
+          <img data-src="/covers/114840070_p0_master1200.jpg" data-sizes="auto" alt="获取所有粒子" class="lazyload">
         
       
     </div>
@@ -289,15 +326,16 @@ mc原版粒子都在ParticleTypes类内，只需要把这个类里面所有的�
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/"></a>
+      <a class="post-link" href="/2024/03/21/%E5%BD%A9%E8%89%B2%E7%89%A9%E5%93%81%E6%B3%A8%E5%86%8C/"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/QQ图片20240227215033.jpg" data-sizes="auto" alt="彩色物品注册" class="lazyload">
+          <img data-src="/covers/114840070_p0_master1200.jpg" data-sizes="auto" alt="彩色物品注册" class="lazyload">
         
       
     </div>
@@ -325,16 +363,15 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 
   
   
-  <div class="post-wrap-left wow fadeInUp">
+  <div class="post-wrap-right wow fadeInUp">
     
-      <a class="post-link" href="/2024/02/16/%E6%A8%A1%E7%BB%84%E8%81%94%E5%8A%A8-%E6%9C%AC%E5%9C%B0/"></a>
+    <a class="post-link" href="/2024/02/16/%E6%A8%A1%E7%BB%84%E8%81%94%E5%8A%A8-%E6%9C%AC%E5%9C%B0/"></a>
     
-    
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/97530917_p0_master1200.jpg" data-sizes="auto" alt="模组联动-本地" class="lazyload">
+          <img data-src="/covers/115927849_p0_master1200.jpg" data-sizes="auto" alt="模组联动-本地" class="lazyload">
         
       
     </div>
@@ -364,15 +401,16 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/02/16/20%E5%B2%81%E7%94%9F%E6%97%A5%E9%9A%8F%E7%AC%94/"></a>
+      <a class="post-link" href="/2024/02/16/20%E5%B2%81%E7%94%9F%E6%97%A5%E9%9A%8F%E7%AC%94/"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/QQ图片20240130012946.jpg" data-sizes="auto" alt="20岁生日随笔" class="lazyload">
+          <img data-src="/covers/107148756_p0_master1200.jpg" data-sizes="auto" alt="20岁生日随笔" class="lazyload">
         
       
     </div>
@@ -401,16 +439,15 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 
   
   
-  <div class="post-wrap-left wow fadeInUp">
+  <div class="post-wrap-right wow fadeInUp">
     
-      <a class="post-link" href="/2024/02/16/%E4%BA%92%E8%81%94%E7%BD%91%E9%9A%8F%E7%AC%94%E5%BD%95/"></a>
+    <a class="post-link" href="/2024/02/16/%E4%BA%92%E8%81%94%E7%BD%91%E9%9A%8F%E7%AC%94%E5%BD%95/"></a>
     
-    
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/QQ图片20240304194359.jpg" data-sizes="auto" alt="互联网随笔录" class="lazyload">
+          <img data-src="/covers/97530917_p0_master1200.jpg" data-sizes="auto" alt="互联网随笔录" class="lazyload">
         
       
     </div>
@@ -437,15 +474,16 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/02/16/2023%E4%B8%8A%E6%B5%B7%E9%9F%B3%E5%BE%8B%E8%81%94%E8%A7%89%E4%B9%8B%E6%97%85/"></a>
+      <a class="post-link" href="/2024/02/16/2023%E4%B8%8A%E6%B5%B7%E9%9F%B3%E5%BE%8B%E8%81%94%E8%A7%89%E4%B9%8B%E6%97%85/"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/104845980_p0_master1200.jpg" data-sizes="auto" alt="2023上海音律联觉之旅" class="lazyload">
+          <img data-src="/covers/b5c87c027757d81f55f5d36b4bf295c4294de83f.jpg" data-sizes="auto" alt="2023上海音律联觉之旅" class="lazyload">
         
       
     </div>
@@ -483,16 +521,15 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 
   
   
-  <div class="post-wrap-left wow fadeInUp">
+  <div class="post-wrap-right wow fadeInUp">
     
-      <a class="post-link" href="/2024/02/16/2022%E5%8A%A8%E6%BC%AB%E7%A4%BE%E6%96%B0%E7%94%9F%E4%BC%9A%E5%90%8E%E8%AE%B0/"></a>
+    <a class="post-link" href="/2024/02/16/2022%E5%8A%A8%E6%BC%AB%E7%A4%BE%E6%96%B0%E7%94%9F%E4%BC%9A%E5%90%8E%E8%AE%B0/"></a>
     
-    
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/QQ图片20240304194359.jpg" data-sizes="auto" alt="2022动漫社新生会后记" class="lazyload">
+          <img data-src="/covers/115927849_p0_master1200.jpg" data-sizes="auto" alt="2022动漫社新生会后记" class="lazyload">
         
       
     </div>
@@ -513,41 +550,6 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 上次这么玩的如此尽兴还是在高二学农的“名场面复刻大赛”。我仍记得毛毛雨中加急的排练，仍记得简陋的道具和校服出演的尴尬。记忆会模糊，情感会被时间冲淡，但这份热爱，从不会离我远去。
 从零散坐在教室后排靠窗的位置时的拘谨，到DNA混剪时的激情四射，放飞自我，在短短2小时内，有各部门负责人的述职，有女装大佬在线整活，有二次元浓度检测器，有宅舞，有热歌，有WOTA艺，也有爆燃MAD。无论新生老生，无论厨的是哪部番，是舟批还是原批，在那一刻，所有人都是动漫社的一员。
 正如动漫社的前辈所说，即使当时只有7人，也阻止不了他们对动漫的热爱。我们因热爱聚于此，因为热爱可以跨越时间，
-        
-      </article>
-    </div>
-  </div>
-
-
-  
-  
-  <div class="post-wrap-right wow fadeInUp">
-    
-    <a class="post-link" href="/2024/02/16/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/"></a>
-    
-    <div class="post-cover-right">
-      
-        
-        
-          <img data-src="/covers/104845980_p0_master1200.jpg" data-sizes="auto" alt="关于客户端类的一个坑" class="lazyload">
-        
-      
-    </div>
-    <div class="post-info">
-      <div class="post-meta">
-        <a><span class="icon-calendar"></span>2024-02-16</a>
-        
-          <a><span class="icon-pencil"></span>173 words</a>
-        
-        
-          <a><span class="icon-clock"></span>1 min</a>
-        
-      </div>
-      <h2 class="post-title">关于客户端类的一个坑</h2>
-      <article class="post-article">
-        
-          一般来说，像Screen类这样的客户端类，是不应该被服务端上加载的，因为服务端上没有这些ClientOnly的类。但是如果你把一个静态方法放在Screen类里面，然后从客户端发往服务端的网络包里调用这个静态方法。虽然看似没有新建一个实例，但是jvm会尝试加载这个客户端类，然后引发报错。这个问题在开发环境的本地端无法引发，因为本地上同时有客户端和服务端的类，但是服务端上是没有这个的，如果连接服务器时，就会引发问题。
-
         
       </article>
     </div>
@@ -576,7 +578,7 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -649,10 +651,10 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
       
         <div>
           <span class="icon-brush"></span>
-          7.6k
+          8.2k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          00:25
+          00:27
         </div>
       
       
@@ -685,7 +687,7 @@ ItemColor类内默认注册了很多原版物品，好在这里有一个Forge提
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">13</div>
+    <div class="sidebar-state-number">14</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
