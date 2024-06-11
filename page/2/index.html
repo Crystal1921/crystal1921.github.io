@@ -8,42 +8,42 @@
   
 
   
+
+  
+  <script>window.icon_font = '4552607_09mhdxci6yrk';window.clipboard_tips = {"success":"复制成功(*^▽^*)","fail":"复制失败 (ﾟ⊿ﾟ)ﾂ"};</script>
+  
+  
   <title>
     
-    Hexo
+    Crystal1921&#39;s Blog
   </title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <link rel="preload" href="https://fonts.googleapis.com/css?family=Mulish:300,300italic,400,400italic,700,700italic%7CNoto%20Serif%20SC:300,300italic,400,400italic,700,700italic%7CUbuntu%20Mono:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+  <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin><link rel="preload" as="style" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap"><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mulish:400,400italic,700,700italic%7CNoto%20Serif%20SC:400,400italic,700,700italic%7CUbuntu%20Mono:400,400italic,700,700italic&display=swap" media="print" onload="this.media&#x3D;&#39;all&#39;">
   
-<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/regular.min.css">
-<link rel="stylesheet" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/solid.min.css">
-
-  <link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/brands.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v5-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;"><link rel="preload" href="https://npm.webcache.cn/@fortawesome/fontawesome-free@6.5.1/css/v4-font-face.min.css" as="style" onload="this.onload&#x3D;null;this.rel&#x3D;&#39;stylesheet&#39;">
+    <link rel="preload" href="//at.alicdn.com/t/c/font_4552607_09mhdxci6yrk.woff2" as="font" type="font/woff2" crossorigin="anonymous">
+  
   
 <link rel="stylesheet" href="/css/loader.css">
 
   <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
+<meta property="og:title" content="Crystal1921&#39;s Blog">
 <meta property="og:url" content="https://crystal1921.github.io/page/2/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Crystal1921&#39;s Blog">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="Crystal1921">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Crystal1921's Blog" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/images/favicon.ico">
   
   
-  
 <link rel="stylesheet" href="/css/style.css">
 
   
-    
-<link rel="stylesheet" href="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css">
+<link rel="stylesheet" href="https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.css">
 
-  
   
   
   
@@ -73,11 +73,11 @@
   <body>
     
   <div id='loader'>
-    <div class="loading-left-bg"></div>
-    <div class="loading-right-bg"></div>
+    <div class="loading-left-bg loading-bg"></div>
+    <div class="loading-right-bg loading-bg"></div>
     <div class="spinner-box">
       <div class="loading-taichi">
-        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
+        <svg width="150" height="150" viewBox="0 0 1024 1024" class="icon" version="1.1" xmlns="https://www.w3.org/2000/svg" shape-rendering="geometricPrecision">
           <path d="M303.5 432A80 80 0 0 1 291.5 592A80 80 0 0 1 303.5 432z" fill="#ff6e6b" />
           <path d="M512 65A447 447 0 0 1 512 959L512 929A417 417 0 0 0 512 95A417 417 0 0 0 512 929L512 959A447 447 0 0 1 512 65z" fill="#fd0d00" />
           <path d="M512 95A417 417 0 0 1 929 512A208.5 208.5 0 0 1 720.5 720.5L720.5 592A80 80 0 0 0 720.5 432A80 80 0 0 0 720.5 592L720.5 720.5A208.5 208.5 0 0 1 512 512A208.5 208.5 0 0 0 303.5 303.5A208.5 208.5 0 0 0 95 512A417 417 0 0 1 512 95" fill="#fd0d00" />
@@ -89,11 +89,11 @@
   </div>
   <script>
     var time = null;
-    const startLoading = () => {
+    var startLoading = () => {
       time = Date.now();
       document.getElementById('loader').classList.remove("loading");
     }
-    const endLoading = () => {
+    var endLoading = () => {
       if (!time) {
         document.body.style.overflow = 'auto';
         document.getElementById('loader').classList.add("loading");
@@ -108,10 +108,12 @@
         }
       }
     }
-    window.addEventListener('load', endLoading);
+    window.addEventListener('DOMContentLoaded', endLoading);
     document.getElementById('loader').addEventListener('click', endLoading);
   </script>
 
+<div id="copy-tooltip" style="pointer-events: none; opacity: 0; transition: all 0.2s ease; position: fixed;top: 50%;left: 50%;z-index: 999;transform: translate(-50%, -50%);color: white;background: rgba(0, 0, 0, 0.5);padding: 10px 15px;border-radius: 10px;">
+</div>
 
     <div id="container">
       <div id="wrap">
@@ -150,7 +152,9 @@
 </div>
 <header id="header">
   
-    <img fetchpriority="high" src="/images/banner.jpg" alt="">
+    
+      <img fetchpriority="high" src="/images/banner.webp" alt="">
+    
   
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
@@ -159,7 +163,7 @@
           
           
             <a href="/" id="logo">
-              <h1>Hexo</h1>
+              <h1>Crystal1921&#39;s Blog</h1>
             </a>
           
         
@@ -181,26 +185,64 @@
   
   <div class="post-wrap-left wow fadeInUp">
     
-      <a class="post-link" href="/2024/02/16/2022%E5%8A%A8%E6%BC%AB%E7%A4%BE%E6%96%B0%E7%94%9F%E4%BC%9A%E5%90%8E%E8%AE%B0/"></a>
+      <a class="post-link" href="/2024/02/16/2023%E4%B8%8A%E6%B5%B7%E9%9F%B3%E5%BE%8B%E8%81%94%E8%A7%89%E4%B9%8B%E6%97%85/" aria-label="2023上海音律联觉之旅"></a>
     
     
     <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/103530070_p0.png" data-sizes="auto" alt="2022动漫社新生会后记" class="lazyload">
+          <img data-src="/covers/屏幕截图 2022-09-19 081010.png" data-sizes="auto" alt="2023上海音律联觉之旅" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <a><span class="icon-calendar"></span>2024-02-16</a>
+        <span><span class="icon-calendar"></span>2024-02-16</span>
+        <span><span class="icon-pencil"></span>355 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
+      </div>
+      <h2 class="post-title">2023上海音律联觉之旅</h2>
+      <article class="post-article">
         
-          <a><span class="icon-pencil"></span>399 words</a>
+          初到上海经过1个半小时的高铁抵达上海站后，上海地铁的交错纵横给我个异乡旅客带来了一点点小小的上海震撼
+
+
+徐家汇站的广告,鹰角你是有心的
+在地铁辗转多次后又转乘出租车，抵达本次旅途的目的地
+
+热闹的场馆内
+散场后|
+从17：15到19：35，鹰角网络在这两个小时内为玩家奉上了精妙绝伦的视听盛宴。
+四个章节和间章动画，从重金属到摇滚，从大航海船歌到蒸汽朋克。无论是情绪表达也好，内容输出也好，音律联觉用各种风格的音乐向玩家展示了泰拉这片大地上的精彩景色。
+演出过程中，博士们也遵循音乐会场的规则，不违规摄影，不乱扔垃圾，在这里留下一段激情与回忆
+最后，以《孤星》中克里斯滕的一段话结束
+孤星12345
+        
+      </article>
+    </div>
+  </div>
+
+
+  
+  
+  <div class="post-wrap-right wow fadeInUp">
+    
+    <a class="post-link" href="/2024/02/16/2022%E5%8A%A8%E6%BC%AB%E7%A4%BE%E6%96%B0%E7%94%9F%E4%BC%9A%E5%90%8E%E8%AE%B0/" aria-label="2022动漫社新生会后记"></a>
+    
+    <div class="post-cover-right">
+      
         
         
-          <a><span class="icon-clock"></span>1 min</a>
+          <img data-src="/covers/98780790_p0_master1200.jpg" data-sizes="auto" alt="2022动漫社新生会后记" class="lazyload">
         
+      
+    </div>
+    <div class="post-info">
+      <div class="post-meta">
+        <span><span class="icon-calendar"></span>2024-02-16</span>
+        <span><span class="icon-pencil"></span>399 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
       <h2 class="post-title">2022动漫社新生会后记</h2>
       <article class="post-article">
@@ -217,27 +259,24 @@
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/02/16/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/"></a>
+      <a class="post-link" href="/2024/02/16/%E5%85%B3%E4%BA%8E%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%B1%BB%E7%9A%84%E4%B8%80%E4%B8%AA%E5%9D%91/" aria-label="关于客户端类的一个坑"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/99616255_p0.jpg" data-sizes="auto" alt="关于客户端类的一个坑" class="lazyload">
+          <img data-src="/covers/98780790_p0_master1200.jpg" data-sizes="auto" alt="关于客户端类的一个坑" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <a><span class="icon-calendar"></span>2024-02-16</a>
-        
-          <a><span class="icon-pencil"></span>173 words</a>
-        
-        
-          <a><span class="icon-clock"></span>1 min</a>
-        
+        <span><span class="icon-calendar"></span>2024-02-16</span>
+        <span><span class="icon-pencil"></span>173 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
       <h2 class="post-title">关于客户端类的一个坑</h2>
       <article class="post-article">
@@ -252,28 +291,23 @@
 
   
   
-  <div class="post-wrap-left wow fadeInUp">
+  <div class="post-wrap-right wow fadeInUp">
     
-      <a class="post-link" href="/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/"></a>
+    <a class="post-link" href="/2024/02/15/%E5%BD%A9%E8%89%B2%E5%BC%B9%E5%B9%95%E6%B8%B2%E6%9F%93/" aria-label="彩色弹幕渲染"></a>
     
-    
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/屏幕截图 2022-09-19 081010.png" data-sizes="auto" alt="彩色弹幕渲染" class="lazyload">
+          <img data-src="/covers/112291095_p0_master1200.jpg" data-sizes="auto" alt="彩色弹幕渲染" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <a><span class="icon-calendar"></span>2024-02-15</a>
-        
-          <a><span class="icon-pencil"></span>469 words</a>
-        
-        
-          <a><span class="icon-clock"></span>2 mins</a>
-        
+        <span><span class="icon-calendar"></span>2024-02-15</span>
+        <span><span class="icon-pencil"></span>469 words</span>
+        <span><span class="icon-clock"></span>2 mins</span>
       </div>
       <h2 class="post-title">彩色弹幕渲染</h2>
       <article class="post-article">
@@ -289,27 +323,24 @@
 
   
   
-  <div class="post-wrap-right wow fadeInUp">
+  <div class="post-wrap-left wow fadeInUp">
     
-    <a class="post-link" href="/2024/02/15/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C/"></a>
+      <a class="post-link" href="/2024/02/15/%E5%A3%B0%E9%9F%B3%E4%BA%8B%E4%BB%B6%E6%B3%A8%E5%86%8C/" aria-label="声音事件的注册"></a>
     
-    <div class="post-cover-right">
+    
+    <div class="post-cover-left">
       
         
         
-          <img data-src="/covers/104473468_p0_master1200.jpg" data-sizes="auto" alt="声音事件的注册" class="lazyload">
+          <img data-src="/covers/104845980_p0_master1200.jpg" data-sizes="auto" alt="声音事件的注册" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <a><span class="icon-calendar"></span>2024-02-15</a>
-        
-          <a><span class="icon-pencil"></span>227 words</a>
-        
-        
-          <a><span class="icon-clock"></span>1 min</a>
-        
+        <span><span class="icon-calendar"></span>2024-02-15</span>
+        <span><span class="icon-pencil"></span>227 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
       <h2 class="post-title">声音事件的注册</h2>
       <article class="post-article">
@@ -324,28 +355,23 @@
 
   
   
-  <div class="post-wrap-left wow fadeInUp">
+  <div class="post-wrap-right wow fadeInUp">
     
-      <a class="post-link" href="/2024/01/23/hello-world/"></a>
+    <a class="post-link" href="/2024/01/23/hello-world/" aria-label="Welcome to Crystal1921&#39;s Blog"></a>
     
-    
-    <div class="post-cover-left">
+    <div class="post-cover-right">
       
         
         
-          <img data-src="/covers/100427037_p0_master1200.jpg" data-sizes="auto" alt="Welcome to Crystal1921&#39;s Blog" class="lazyload">
+          <img data-src="/covers/b5c87c027757d81f55f5d36b4bf295c4294de83f.jpg" data-sizes="auto" alt="Welcome to Crystal1921&#39;s Blog" class="lazyload">
         
       
     </div>
     <div class="post-info">
       <div class="post-meta">
-        <a><span class="icon-calendar"></span>2024-01-23</a>
-        
-          <a><span class="icon-pencil"></span>32 words</a>
-        
-        
-          <a><span class="icon-clock"></span>1 min</a>
-        
+        <span><span class="icon-calendar"></span>2024-01-23</span>
+        <span><span class="icon-pencil"></span>32 words</span>
+        <span><span class="icon-clock"></span>1 min</span>
       </div>
       <h2 class="post-title">Welcome to Crystal1921&#39;s Blog</h2>
       <article class="post-article">
@@ -374,14 +400,14 @@
   <div class="sidebar-wrap wow fadeInRight ">
     
       <div class="sidebar-author">
-  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">15</div>
+    <div class="sidebar-state-number">16</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -398,25 +424,25 @@
 <div class="sidebar-menu">
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/"></a>
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">Home</div>
     </div>
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/archives"></a>
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">Archives</div>
     </div>
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/about"></a>
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">About</div>
     </div>
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/friend"></a>
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">Friend</div>
     </div>
@@ -454,10 +480,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          8.7k
+          9.3k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          00:29
+          00:31
         </div>
       
       
@@ -474,7 +500,7 @@
 </footer>
 
         <div class="sidebar-top">
-          <img src="/images/taichi.png" height="50" width="50" />
+          <img src="/images/taichi.png" height="50" width="50" alt="backtop" />
           <div class="arrow-up"></div>
         </div>
         <div id="mask"></div>
@@ -483,14 +509,14 @@
   <div class="sidebar-wrap">
     
       <div class="sidebar-author">
-  <img data-src="/avatar/avatar.jpg" data-sizes="auto" alt="Crystal1921" class="lazyload">
+  <img data-src="/avatar/avatar.webp" data-sizes="auto" alt="Crystal1921" class="lazyload">
   <div class="sidebar-author-name">Crystal1921</div>
   <div class="sidebar-description"></div>
 </div>
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">15</div>
+    <div class="sidebar-state-number">16</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -507,25 +533,25 @@
 <div class="sidebar-menu">
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/"></a>
+      <a class="sidebar-menu-link-dummy" href="/" aria-label="Home"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">Home</div>
     </div>
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/archives"></a>
+      <a class="sidebar-menu-link-dummy" href="/archives" aria-label="Archives"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">Archives</div>
     </div>
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/about"></a>
+      <a class="sidebar-menu-link-dummy" href="/about" aria-label="About"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">About</div>
     </div>
   
     <div class="sidebar-menu-link-wrap">
-      <a class="sidebar-menu-link-dummy" href="/friend"></a>
+      <a class="sidebar-menu-link-dummy" href="/friend" aria-label="Friend"></a>
       <span class="sidebar-menu-icon"></span>
       <div class="sidebar-menu-link">Friend</div>
     </div>
@@ -553,9 +579,6 @@
       </div>
     </div>
     
-<script src="https://npm.webcache.cn/jquery@3.7.1/dist/jquery.min.js"></script>
-
-
 <script src="https://npm.webcache.cn/lazysizes@5.3.2/lazysizes.min.js"></script>
 
 
@@ -563,22 +586,40 @@
 
 
 
-  
-<script src="https://npm.webcache.cn/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" defer></script>
-
-
-
-  
-<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
-
-
-
+<script src="/js/script.js"></script>
 
 
 
 <script src="/js/pjax_script.js" data-pjax></script>
 
 
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe-lightbox.esm.js";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.js")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("https://npm.webcache.cn/photoswipe@5.4.4/dist/photoswipe.esm.js")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
 
 
 
@@ -600,10 +641,11 @@
 
 
 
-
-
-<script src="/js/script.js"></script>
-
+<div id="lazy-script">
+  <div>
+    
+  </div>
+</div>
 
 
   <script>
@@ -615,9 +657,14 @@
   \/_/ /_/   \/_____/   \/_/   \/_/  \/_/   \/_____/ 
                                                   
 `,'color: #ff5252;')
-    console.log('%c Theme.Reimu v' + '0.1.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
+    console.log('%c Theme.Reimu v' + '0.2.0' + ' %c https://github.com/D-Sketon/hexo-theme-reimu ', 'color: white; background: #ff5252; padding:5px 0;', 'padding:4px;border:1px solid #ff5252;')
   </script>
   
+
+
+  
+<script src="https://npm.webcache.cn/busuanzi@2.3.0/bsz.pure.mini.js" async></script>
+
 
   <!-- hexo injector body_end start -->
 <script src="/js/insert_highlight.js" data-pjax></script>
