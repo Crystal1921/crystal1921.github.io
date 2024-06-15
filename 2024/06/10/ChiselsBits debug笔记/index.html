@@ -33,16 +33,16 @@
 <meta property="og:site_name" content="Crystal1921&#39;s Blog">
 <meta property="og:description" content="在分析器火焰图中，能看到blobFromBytes方法占据了大量的时间，但是方法中的运算时间又极少，查阅内存分配会发现大量的内存被分配在了新的VoxelBlob实例上。VoxelBlob是用来储存二进制体素数据的类，它需要一个BitSet(4096)，也就是16^3来储存数据，吃掉了大量的内存，而这很快引起gc，并消耗CPU时间。 想要优化只能从源头处找到是哪里在新建VoxelBlob实例，在分析">
 <meta property="og:locale" content="en_US">
-<meta property="og:image" content="https://crystal1921.github.io/image%5Cprofiler%5Cprofiler6-5.png">
-<meta property="og:image" content="https://crystal1921.github.io/image%5Cprofiler%5Cprofiler6-10.png">
+<meta property="og:image" content="https://crystal1921.github.io/image/profiler/profiler6-5.png">
+<meta property="og:image" content="https://crystal1921.github.io/image/profiler/profiler6-10.png">
 <meta property="article:published_time" content="2024-06-10T15:25:12.464Z">
-<meta property="article:modified_time" content="2024-06-10T16:02:51.092Z">
+<meta property="article:modified_time" content="2024-06-15T15:38:47.201Z">
 <meta property="article:author" content="Crystal1921">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="mod">
 <meta property="article:tag" content="mc">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://crystal1921.github.io/image%5Cprofiler%5Cprofiler6-5.png">
+<meta name="twitter:image" content="https://crystal1921.github.io/image/profiler/profiler6-5.png">
   
     <link rel="alternate" href="/atom.xml" title="Crystal1921's Blog" type="application/atom+xml">
   
@@ -208,7 +208,7 @@
 
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <p><img src="/image%5Cprofiler%5Cprofiler6-5.png"><br>在分析器火焰图中，能看到blobFromBytes方法占据了大量的时间，但是方法中的运算时间又极少，查阅内存分配会发现大量的内存被分配在了新的VoxelBlob实例上。VoxelBlob是用来储存二进制体素数据的类，它需要一个BitSet(4096)，也就是16^3来储存数据，吃掉了大量的内存，而这很快引起gc，并消耗CPU时间。</p>
+        <p><img src="https://crystal1921.github.io/image/profiler/profiler6-5.png"><br>在分析器火焰图中，能看到blobFromBytes方法占据了大量的时间，但是方法中的运算时间又极少，查阅内存分配会发现大量的内存被分配在了新的VoxelBlob实例上。VoxelBlob是用来储存二进制体素数据的类，它需要一个BitSet(4096)，也就是16^3来储存数据，吃掉了大量的内存，而这很快引起gc，并消耗CPU时间。</p>
 <p>想要优化只能从源头处找到是哪里在新建VoxelBlob实例，在分析器中可以看到游戏在blobFromBytes的底下是renderModelFaceAO，这个方法的作用是渲染带环境光遮蔽的面，看起来无可厚非。</p>
 <p>但是仔细观察调用链会发现，怎么在calculateShape的时候，里面的isCollisionShapeFullBlock方法也要新建VoxelBlob对象，判断是否为完整方块为什么要拿到全部的体素数据</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Deprecated</span></span><br><span class="line"><span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isCollisionShapeFullBlock</span><span class="params">(BlockState pState, BlockGetter pLevel, BlockPos pPos)</span> &#123;</span><br><span class="line">   <span class="keyword">return</span> Block.isShapeFullBlock(pState.getCollisionShape(pLevel, pPos));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -218,7 +218,7 @@
 <p>但是这套判断方法不能通过覆写Block类的方法修改，只能对isCollisionShapeFullBlock方法进行mixin</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@Mixin(BlockBehaviour.class)</span></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MixinBlockBehaviour</span> &#123;</span><br><span class="line">    <span class="meta">@Inject(at = @At(value = &quot;HEAD&quot;),method = &quot;isCollisionShapeFullBlock&quot;, cancellable = true)</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">void</span> <span class="title function_">isCollisionShapeFullBlock</span><span class="params">(BlockState pState, BlockGetter pLevel, BlockPos pPos, CallbackInfoReturnable&lt;Boolean&gt; cir)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (pState.is(ModBlocks.CHISELED_BLOCK.get())) &#123;</span><br><span class="line">            <span class="type">boolean</span> <span class="variable">isFull</span> <span class="operator">=</span> pState.getValue(FULL_BLOCK);</span><br><span class="line">            cir.setReturnValue(isFull);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>先判断是否为雕刻方块，后直接按着blockState进行判断，避免了生成大量VoxelBlob的实例，如果不是，返回原版逻辑进行普通判断</p>
-<p>最后，得到了优化后新的火焰图。<br><img src="/image%5Cprofiler%5Cprofiler6-10.png"></p>
+<p>最后，得到了优化后新的火焰图。<br><img src="https://crystal1921.github.io/image/profiler/profiler6-10.png"></p>
 
       
     </div>
@@ -243,7 +243,7 @@
         
           
           
-            <img data-src="/covers/103328382_p0.jpg" data-sizes="auto" alt="模型烘焙笔记" class="lazyload">
+            <img data-src="/covers/QQ图片20240130012946.jpg" data-sizes="auto" alt="模型烘焙笔记" class="lazyload">
           
         
         <a href="/2024/06/11/%E6%A8%A1%E5%9E%8B%E7%83%98%E7%84%99%E7%AC%94%E8%AE%B0/"></a>
@@ -260,7 +260,7 @@
       
         
         
-          <img data-src="/covers/QQ图片20240118213822.jpg" data-sizes="auto" alt="ChiselsBits阅读笔记" class="lazyload">
+          <img data-src="/covers/107148756_p0_master1200.jpg" data-sizes="auto" alt="ChiselsBits阅读笔记" class="lazyload">
         
       
       <a href="/2024/06/01/ChiselsBits%E9%98%85%E8%AF%BB%E7%AC%94%E8%AE%B0/"></a>
@@ -305,7 +305,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">17</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
@@ -383,10 +383,10 @@
       
         <div>
           <span class="icon-brush"></span>
-          9.3k
+          9.7k
           &nbsp;|&nbsp;
           <span class="icon-coffee"></span>
-          00:31
+          00:32
         </div>
       
       
@@ -428,7 +428,7 @@
 <div class="sidebar-state">
   <div class="sidebar-state-article">
     <div>Posts</div>
-    <div class="sidebar-state-number">16</div>
+    <div class="sidebar-state-number">17</div>
   </div>
   <div class="sidebar-state-category">
     <div>Categories</div>
