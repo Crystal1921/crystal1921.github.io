@@ -6,7 +6,7 @@ tags:
   - mc
 ---
 
-![](https://crystal1921.github.io/image/profiler/profiler6-5.png)
+![](image/profiler/profiler6-5.png)
 在分析器火焰图中，能看到blobFromBytes方法占据了大量的时间，但是方法中的运算时间又极少，查阅内存分配会发现大量的内存被分配在了新的VoxelBlob实例上。VoxelBlob是用来储存二进制体素数据的类，它需要一个BitSet(4096)，也就是16^3来储存数据，吃掉了大量的内存，而这很快引起gc，并消耗CPU时间。
 
 想要优化只能从源头处找到是哪里在新建VoxelBlob实例，在分析器中可以看到游戏在blobFromBytes的底下是renderModelFaceAO，这个方法的作用是渲染带环境光遮蔽的面，看起来无可厚非。
@@ -41,4 +41,4 @@ public class MixinBlockBehaviour {
 先判断是否为雕刻方块，后直接按着blockState进行判断，避免了生成大量VoxelBlob的实例，如果不是，返回原版逻辑进行普通判断
 
 最后，得到了优化后新的火焰图。
-![](https://crystal1921.github.io/image/profiler/profiler6-10.png)
+![](image/profiler/profiler6-10.png)
