@@ -1,0 +1,72 @@
+.tagcloud
+  a
+    display: inline-block
+    margin-right: 5px
+    margin-top: 5px
+
+[data-theme="dark"] .widget-wrap
+  box-shadow: 0 0 10px 3px var(--color-hover-shadow)
+
+.widget-wrap
+  margin: block-margin 0
+  background: var(--color-wrap)
+  border-radius: post-radius
+  transition: all .3s ease
+
+  &:hover
+    transform: scale(1.015)
+    box-shadow: 0 0 10px 3px var(--color-hover-shadow)
+
+.widget-title
+  text-decoration: none
+  text-transform: uppercase
+  letter-spacing: 2px
+  color: var(--color-grey)
+  line-height: 1em
+  font-weight: bold
+  padding: 20px 20px 10px
+
+.widget
+  color: var(--color-sidebar-text)
+  padding: 10px 20px
+  border-radius: 3px
+
+  a, span
+    color: var(--color-link)
+    text-decoration: none
+    opacity: .8
+    transition: all .3s ease
+
+    &:hover
+      opacity: 1
+      color: var(--red-0)
+
+  span
+    margin-left: 5px
+
+  ul, ol, dl
+    ul, ol, dl
+      margin-left: 15px
+      list-style: none
+
+  li
+    margin: 10px 0
+
+    &:before
+      content: ""
+      display: inline-block
+      width: 5px
+      height: 10px
+      background: var(--color-h2-after)
+      vertical-align: middle
+      margin-right: 11px
+      box-shadow: 0 2px 12px var(--color-h2-after-shadow)
+      opacity: .5
+      transition: all .3s ease
+
+    &:hover
+      &:before
+        width: 5px
+        height: 5px
+        border-radius: 50%
+        opacity: 1

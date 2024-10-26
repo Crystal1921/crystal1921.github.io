@@ -1,0 +1,323 @@
+<%- js(vendorCdn(theme.vendor.js.lazysizes)) %>
+<%- js(vendorCdn(theme.vendor.js.clipboard)) %>
+
+<%- js('js/script.js') %>
+
+<%- js({src: 'js/pjax_script.js', 'data-pjax': true}) %>
+
+<script type="module" data-pjax>
+  import PhotoSwipeLightbox from "<%- vendorCdn(theme.vendor.js.photoswipe_lightbox) %>";
+  
+  const pswp = () => {
+    if (_$$('.article-entry a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-entry',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("<%- vendorCdn(theme.vendor.js.photoswipe) %>")
+      }).init();
+    }
+    if(_$$('.article-gallery a.article-gallery-item').length > 0) {
+      new PhotoSwipeLightbox({
+        gallery: '.article-gallery',
+        children: 'a.article-gallery-item',
+        pswpModule: () => import("<%- vendorCdn(theme.vendor.js.photoswipe) %>")
+      }).init();
+    }
+    window.lightboxStatus = 'done';
+    window.removeEventListener('lightbox:ready', pswp);
+  }
+  if(window.lightboxStatus === 'ready') {
+    pswp()
+  } else {
+    window.addEventListener('lightbox:ready', pswp);
+  }
+</script>
+
+<% if (theme.valine.enable && theme.valine.appId && theme.valine.appKey) { %>
+  <%- js({src: vendorCdn(theme.vendor.js.valine)[0], 'data-pjax': true}) %>
+  <script data-pjax>
+    var GUEST_INFO = ['nick', 'mail', 'link'];
+    var guest_info = '<%= theme.valine.guest_info %>'.split(',').filter((item) => {
+      return GUEST_INFO.indexOf(item) > -1
+    });
+    var recordIP = JSON.parse('<%= theme.valine.recordIP %>');
+    var highlight = JSON.parse('<%= theme.valine.highlight %>');
+    var visitor = JSON.parse('<%= theme.valine.visitor %>');
+
+    new Valine({
+      el: '.vcomment',
+      appId: "<%= theme.valine.appId %>",
+      appKey: "<%= theme.valine.appKey %>",
+      placeholder: "<%= theme.valine.placeholder %>",
+      pageSize: '<%= theme.valine.pageSize %>',
+      avatar: '<%= theme.valine.avatar %>',
+      lang: '<%= theme.valine.lang %>',
+      recordIP: recordIP,
+      highlight: highlight,
+      visitor: visitor,
+      requiredFields: guest_info,
+      path: window.location.pathname
+    });
+  </script>
+<% } %>
+
+<% if (theme.waline.enable && theme.waline.serverURL) { %>
+  <script data-pjax type="module">
+    import { init } from "<%= vendorCdn(theme.vendor.js.waline)[0] %>";
+    if(_$('.wcomment')) {
+      window.walineInstance = init({
+        el: '.wcomment',
+        serverURL: '<%= theme.waline.serverURL %>',
+        lang: '<%= theme.waline.lang %>',
+        locale: <%- JSON.stringify(theme.waline.locale) %>,
+        emoji: <%- JSON.stringify(theme.waline.emoji) %>,
+        meta: <%- JSON.stringify(theme.waline.meta) %>,
+        requiredMeta: <%-JSON.stringify(theme.waline.requiredMeta) %>,
+        wordLimit: JSON.parse('<%= theme.waline.wordLimit %>'),
+        comment: true,
+        pageSize: JSON.parse('<%= theme.waline.pageSize %>'),
+        dark: 'html[data-theme="dark"]',
+        pageview: JSON.parse('<%= theme.waline.pageview %>'),
+    });
+    }
+  </script>
+<% } %>
+
+<% if (theme.gitalk.enable && theme.gitalk.clientID && theme.gitalk.clientSecret) { %>
+  <%- js({src: vendorCdn(theme.vendor.js.gitalk)[0], 'data-pjax': true}) %>
+  <script data-pjax>
+    const gitalk = new Gitalk({
+      clientID: '<%= theme.gitalk.clientID %>',
+      clientSecret: '<%= theme.gitalk.clientSecret %>',
+      repo: '<%= theme.gitalk.repo %>',
+      owner: '<%= theme.gitalk.owner %>',
+      admin: <%= theme.gitalk.admin %>,
+      id: location.pathname, // Ensure uniqueness and length less than 50
+      distractionFreeMode: false // Facebook-like distraction free mode
+    })
+    gitalk.render('comments')
+  </script>
+<% } %>
+
+<% if (theme.twikoo.enable && theme.twikoo.envId) { %>
+  <%- js({src: vendorCdn(theme.vendor.js.twikoo)[0], 'data-pjax': true}) %>
+  <script data-pjax>
+    twikoo.init({
+      envId: '<%= theme.twikoo.envId %>',
+      el: '.tcomment',
+      region: '<%= theme.twikoo.region %>',
+    })
+  </script>
+<% } %>
+
+<% if (theme.giscus.enable && page.comments !== false) { %>
+  <script src="https://giscus.app/client.js"
+          data-repo='<%= theme.giscus.repo %>'
+          data-repo-id='<%= theme.giscus.repoId %>'
+          data-category='<%= theme.giscus.category %>'
+          data-category-id='<%= theme.giscus.categoryId %>'
+          data-mapping='<%= theme.giscus.mapping %>'
+          data-strict='<%= theme.giscus.strict %>'
+          data-reactions-enabled='<%= theme.giscus.reactionsEnabled %>'
+          data-emit-metadata='<%= theme.giscus.emitMetadata %>'
+          data-input-position='<%= theme.giscus.inputPosition %>'
+          data-theme='<%= theme.giscus.commentTheme %>'
+          data-lang='<%= theme.giscus.lang %>'
+          crossorigin="anonymous"
+          data-pjax
+          async>
+  </script>
+<% } %>
+
+<% if (theme.generator_search.enable) { %>
+  <%- js('js/generator_search.js') %>
+<% } %>
+
+<% if (theme.algolia_search.enable) { %>
+  <%- js(vendorCdn(theme.vendor.js.algolia)) %>
+  <%- js(vendorCdn(theme.vendor.js.instantsearch)) %>
+  <%- js('js/algolia_search.js') %>
+  <script>
+    var CONFIG = {
+      root: '/',
+      algolia: {
+        applicationID: "<%= config.algolia.appId %>",
+        apiKey: "<%= config.algolia.apiKey %>",
+        indexName: "<%= config.algolia.indexName %>",
+        hits: {
+          "per_page": parseInt("<%= theme.algolia_search.hits.per_page %>")
+        },
+        labels: {
+          "input_placeholder": "<%= theme.algolia_search.labels.input_placeholder %>",
+          "hits_empty": "<%= theme.algolia_search.labels.hits_empty %>",
+          "hits_stats": "<%= theme.algolia_search.labels.hits_stats %>"
+        }
+      }
+    };
+  </script>
+<% } %>
+
+<% if (theme.firework.enable) { %>
+  <%- js(vendorCdn(theme.vendor.js.firework)) %>
+  <script>
+    firework(JSON.parse('<%- JSON.stringify(theme.firework.options) %>'))
+  </script>
+<% } %>
+
+<% if (theme.pjax.enable) { %>
+  <%- js(vendorCdn(theme.vendor.js.pjax)) %>
+  <script>
+    function loadScripts(scripts, index) {
+      if (index < scripts.length) {
+        const script = scripts[index];
+        const src = script.getAttribute('src');
+
+        if (src) {
+          fetch(src)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Network response was not ok ' + response.statusText);
+              }
+              return response.text();
+            })
+            .then(scriptContent => {
+              const scriptElement = document.createElement('script');
+              scriptElement.text = scriptContent;
+              document.head.appendChild(scriptElement);
+              loadScripts(scripts, index + 1);
+            })
+            .catch(error => {
+              console.error('Failed to load script:', src, error);
+            });
+        } else {
+          // Inline script, directly evaluate
+          eval(script.textContent);
+          loadScripts(scripts, index + 1);
+        }
+      }
+    }
+    new Pjax({
+      selectors: [
+        "#header-title",
+        "#subtitle-wrap",
+        "#content",
+        '#mobile-nav',
+        '#lazy-script'
+      ],
+      switches: {
+        "#header-title": Pjax.switches.outerHTML,
+        "#subtitle-wrap": Pjax.switches.outerHTML,
+        "#content": function(oldEl, newEl, options) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.outerHTML = newEl.outerHTML
+          this.onSwitch()
+        },
+        "#mobile-nav": Pjax.switches.outerHTML,
+        '#lazy-script': function(oldEl, newEl, options) {
+          const scripts = [...newEl.querySelectorAll('script')];
+          loadScripts(scripts, 0);
+          oldEl.innerHTML = newEl.innerHTML
+          this.onSwitch()
+        },
+      },
+      cacheBust: false
+    })
+  </script>
+  <%- js('js/pjax.js') %>
+<% } %>
+
+<% if (theme.live2d.enable) { %>
+  <script>
+    function initLive2d() {
+      live2d.init("<%- vendorCdn(theme.vendor.js.live2d.base)[0] %>", {themeTipsPath: ""});
+    }
+  </script>
+  <%- js({src: vendorCdn(theme.vendor.js.live2d.js)[0], onload: "initLive2d && initLive2d()", async: true})%>
+<% } %>
+
+<div id="lazy-script">
+  <div>
+    <% if (theme.mermaid.enable && page.mermaid) { %>
+      <%- js({src: vendorCdn(theme.vendor.js.mermaid)[0], 'data-pjax': true}) %>
+      <script data-pjax>
+        if (window.mermaid) {
+          // https://github.com/mermaid-js/mermaid/issues/1945
+          const elementCode = '.mermaid'
+          const saveOriginalData = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                var els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if (element.getAttribute('data-original-code') == null){
+                    element.setAttribute('data-original-code', element.innerHTML)
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          }
+          const resetProcessed = () => {
+            return new Promise((resolve, reject) => {
+              try {
+                var els = _$$(elementCode),
+                    count = els.length;
+                els.forEach(element => {
+                  if(element.getAttribute('data-original-code') != null){
+                    element.removeAttribute('data-processed')
+                    element.innerHTML = element.getAttribute('data-original-code')
+                  }
+                  count--
+                  if(count == 0){
+                    resolve()
+                  }
+                });
+              } catch (error) {
+              reject(error) 
+              }
+            })
+          } 
+          const loadMermaid = (theme) => {
+            window.mermaid.initialize({theme})
+            window.mermaid.init({theme}, _$$(elementCode))
+          }
+          document.body.addEventListener('dark-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          })
+          document.body.addEventListener('light-theme-set', () => {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          })
+          if(localStorage.getItem('dark_mode') == 'true') {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('dark'))
+            .catch(console.error)
+          } else {
+            saveOriginalData()
+            .then(resetProcessed())
+            .then(loadMermaid('default'))
+            .catch(console.error)
+          }
+        }
+      </script>
+    <% } %>
+  </div>
+</div>
+
+<%- copyright() %>
+
+<% if (theme.footer.busuanzi) { %>
+  <%- js({src: vendorCdn(theme.vendor.js.busuanzi)[0], async: true}) %>
+<% } %>

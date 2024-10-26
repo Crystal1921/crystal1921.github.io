@@ -1,0 +1,91 @@
+#footer
+  background: linear-gradient(to top, var(--color-footer-background) 50%, transparent)
+  display: flex
+  justify-content: center
+  flex-direction: column
+  margin-top: auto
+  padding: 40px 0 20px 0
+  color: var(--color-grey)
+
+  &:hover
+    .footer-line
+      opacity: 0.5
+
+  a
+    color: var(--color-link)
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline
+
+.footer-line
+  margin: 20px 0 40px
+  opacity: 0.3
+  width: 200%
+  height: 10px
+  background: linear-gradient(to left, rgba(255, 0, 0, 0.75) 50%, transparent 0%) repeat-x 0 0 / 100px 10px
+  transition: opacity 0.3s ease
+  animation: transform-all 3s linear infinite
+  filter: drop-shadow(0px 0px 2px red)
+
+#footer-info
+  line-height: line-height
+  font-size: 0.85em
+  width: 100%
+  margin: 0
+
+  div
+    margin: 5px 0
+    display: flex
+    justify-content: center
+
+.icon-brush
+  margin: 0 5px
+
+.icon-coffee
+  margin: 0 5px
+
+.icon-eye
+  margin: 0 5px
+
+.icon-user
+  margin: 0 5px
+
+.footer-info-sep
+  width: 25px
+  opacity: 0.6
+  background: url("../images/taichi.png") no-repeat center / 80%
+  animation: rotate-all 3s linear infinite
+
+vendors = official
+
+@keyframes rotate-all
+  100%
+    transform: rotate(360deg)
+
+@keyframes transform-all
+  100%
+    transform: translateX(-100px)
+
+.article-copyright
+  background: var(--red-5-5)
+  border-left: 6px var(--red-4) solid
+  margin: 1.8em 0
+  border-radius: 5px
+  transition: all .3s ease
+  padding: 5px 10px
+
+  p
+    font-size: 14px;
+    line-height: 2;
+    color: var(--color-default)
+
+    strong
+      font-weight: 700
+
+  a
+    color: var(--color-default)
+    text-decoration: none
+
+    &:hover
+      text-decoration: underline

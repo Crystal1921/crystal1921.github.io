@@ -1,0 +1,192 @@
+.post-link
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+
+$post-wrap
+  width: 100%
+  height: 230px
+  margin-bottom: 40px
+  position: relative
+  border-radius: post-radius
+  background: var(--color-wrap)
+  display: flex
+  flex-direction: row
+  transition: all .3s ease
+
+  @media mq-normal
+    &:hover
+      transform: scale(1.015)
+
+      &:before
+        opacity: .8
+
+      img
+        transition: all .3s ease
+        transform: scale(1.05)
+
+    &:before
+      content: ""
+      position: absolute
+      top: 0
+      left: 0
+      width: 100%
+      height: 100%
+      border-radius: post-radius
+      box-shadow: 0 0 10px 3px rgba(0, 0, 0, .1)
+      opacity: 0
+      transition: all .3s ease
+
+
+[data-theme="dark"] .post-wrap-left
+  box-shadow: 0 0 10px 3px var(--color-hover-shadow)
+
+[data-theme="dark"] .post-wrap-right
+  box-shadow: 0 0 10px 3px var(--color-hover-shadow)
+
+.post-wrap-left
+  @extend $post-wrap
+
+  @media mg-normal
+    flex-direction: column
+    height: 400px
+
+.post-wrap-right
+  @extend $post-wrap
+  flex-direction: row-reverse
+
+  @media mg-normal
+    flex-direction: column
+    height: 400px
+
+.post-info
+  height: 100%
+  width: 100%
+  padding: 20px
+  overflow: hidden
+  box-sizing: border-box
+
+.post-meta
+  display: flex
+  justify-content: flex-end
+  margin: 5px 0
+
+  span
+    font-size: 14px
+    color: #777777
+    margin: 0 8px
+    white-space: nowrap
+    text-overflow: ellipsis
+    overflow: hidden
+
+  span:before
+    margin: 0 10px
+
+    @media mg-normal
+      margin: 0
+
+.post-article
+  width: 100%
+  display: -webkit-box
+  -webkit-box-orient: vertical
+  -webkit-line-clamp: 3
+  overflow: hidden
+  line-height: 30px
+  font-size: 15px
+  color: #777777
+
+  a
+    color: var(--color-link)
+
+$post-cover
+  width: 40%
+  position: relative
+  overflow: hidden
+  min-height: 95px
+  background-color: var(--color-wrap)
+  flex-shrink: 0
+  pointer-events: none
+
+  @media mg-normal
+    width: 100%
+    height: 45%
+
+  img
+    display: block
+    opacity: 0
+    transition: all .2s ease
+    position: absolute
+    left: 0
+    top: 0
+    object-fit: cover
+    width: 100%
+    height: 100%
+
+  img.lazyloaded
+    opacity: 1
+    animation: blur .8s ease forwards
+
+.post-cover-left
+  @media mq-normal
+    border-radius: post-radius 0 0 post-radius
+    -webkit-clip-path: polygon(0 0, 92% 0%, 100% 100%, 0% 100%)
+    clip-path: polygon(0 0, 92% 0%, 100% 100%, 0% 100%)
+
+  @media mg-normal
+    border-radius: post-radius post-radius 0 0
+
+  @extend $post-cover
+
+.post-cover-right
+  @media mq-normal
+    border-radius: 0 post-radius post-radius 0
+    -webkit-clip-path: polygon(0 0, 100% 0%, 100% 100%, 8% 100%)
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 8% 100%)
+
+  @media mg-normal
+    border-radius: post-radius post-radius 0 0
+
+  @extend $post-cover
+
+.post-title
+  padding: 20px 0
+  color: var(--color-link)
+  font-size: 25px
+  font-weight: bold
+  text-decoration: none
+  letter-spacing: 1px
+  white-space: nowrap
+  overflow: hidden
+  text-overflow: ellipsis
+
+.post-sticky
+  position: absolute
+  display: flex
+  justify-content: center
+  align-items: center
+  top: 0
+  left: 0
+  width: 70px
+  height: 35px
+  background: var(--color-sticky)
+  color: var(--red-1)
+  font-weight: bold
+  font-size: 15px
+  z-index: 1
+  opacity: 1
+  transition: all .3s ease
+
+  &:before
+    margin-right: 5px
+
+.post-wrap-left
+  .post-sticky
+    border-top-left-radius: post-radius
+    border-bottom-right-radius: post-radius
+
+.post-wrap-right
+  .post-sticky
+    border-top-right-radius: post-radius
+    border-bottom-left-radius: post-radius

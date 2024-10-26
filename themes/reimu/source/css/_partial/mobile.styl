@@ -1,0 +1,20 @@
+@media mq-large
+  #mobile-nav
+    display: none
+
+@media mg-large
+  #mobile-nav
+    position: fixed
+    top: 0
+    left: -(mobile-nav-width)
+    width: mobile-nav-width
+    height: 100%
+    background: var(--color-mobile-nav-background)
+    z-index: 1001
+    transition: left 0.2s ease
+
+    .mobile-nav-on &
+      left: 0
+
+#mobile-nav .sidebar-wrap
+  background: var(--color-mobile-nav-background)

@@ -1,0 +1,202 @@
+#header
+  height: banner-height
+  position: relative
+
+  img
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 150%
+    z-index: -2
+
+    display: block
+    object-fit: cover
+    transition: all 0.3s ease
+    -webkit-mask: linear-gradient(to top, transparent, #fff 50%)
+    mask: linear-gradient(to top, transparent, #fff 50%)
+
+    @media mg-large
+      height: 120%
+
+    @media mg-normal
+      height: 100%
+
+#header-outer
+  height: 100%
+  position: relative
+  max-width: 100%
+  margin: 0
+
+[data-theme="dark"]
+  #header-nav:hover
+    background: var(--color-header-background)
+
+#header-nav
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  display: flex
+  justify-content: center
+  overflow: hidden
+  background: var(--color-header-background)
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.1)
+  transition: all .3s ease
+  z-index: 200
+
+  &:hover
+    background: rgba(255, 255, 255, 0.95)
+
+  &.header-nav-hidden
+    top: -80px
+
+#header-title
+  font-family: font-title
+  font-weight: 700
+  text-align: center
+  height: logo-size
+  position: absolute
+  top: 50%
+  left: 0
+  margin-top: logo-size * -0.5
+
+$logo-text
+  text-decoration: none
+  color: #fff
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.5)
+
+#logo
+  @extend $logo-text
+  font-size: logo-size
+  font-weight: 700
+  line-height: logo-size
+  letter-spacing: 2px
+  display: inline-block
+  width: 80%
+  transform: translateY(-20%)
+  text-shadow: 0 0.2rem 0.3rem rgba(0,0,0,.5);
+
+  @media mg-large
+    width: 90%
+    font-size: 35px
+
+  @media mq-tablet
+    width: 95%
+    font-size: 30px
+
+  @media mq-mobile
+    width: 100%
+    font-size: 30px
+
+#subtitle
+  @extend $logo-text
+  font-size: subtitle-size
+  font-weight: 400
+  line-height: subtitle-size
+  letter-spacing: 1px
+
+  @media mg-large
+    font-size: 15px
+
+  @media mq-tablet
+    width: 95%
+    font-size: 14px
+
+  @media mq-mobile
+    width: 100%
+    font-size: 13px
+
+#subtitle-wrap
+  margin-top: subtitle-size
+
+#main-nav
+  display: flex
+  align-items: center
+  margin-left: -15px
+
+$nav-link
+  color: var(--red-0)
+  opacity: 0.8
+  text-decoration: none
+  text-shadow: 0 1px rgba(0, 0, 0, 0.2)
+  transition: opacity 0.2s
+  display: block
+  padding: 20px 15px
+
+$nav-link-wrap
+  @extend $nav-link
+  padding: 0 15px
+  display: flex
+  transition: all .3s ease
+
+  &:hover
+    opacity: 1
+
+  @media mg-large
+    padding: 0 10px
+
+  @media mg-normal
+    padding: 0 4px
+
+.nav-icon
+  @extend $nav-link
+  text-align: center
+  font-size: font-size
+  width: font-size
+  height: font-size
+  padding: 20px 15px
+  position: relative
+  if reimu_cursor
+    cursor: var(--cursor-pointer)
+  else
+    cursor: pointer
+
+[data-theme="dark"]
+  .main-nav-link, .main-nav-icon, .nav-icon, .main-nav-link-wrap
+    color: var(--red-2)
+  .main-nav-icon, .nav-icon
+    filter: brightness(120%)
+
+.main-nav-link-wrap
+  @extend $nav-link-wrap
+  @media mq-mobile
+    display: none
+
+  &:hover .main-nav-icon
+    transition: transform 1s ease
+    transform: rotate(360deg)
+
+.main-nav-link
+  @extend $nav-link
+  font-weight: 400
+  letter-spacing: 1px
+
+.main-nav-icon
+  @extend $nav-link
+  background: url("../images/taichi.png") no-repeat center / 80%
+  transform: rotate(0deg)
+  transition: transform 1s ease
+  if reimu_cursor
+    cursor: var(--cursor-pointer)
+  else
+    cursor: pointer
+
+#main-nav-toggle
+  display: none
+
+  @media mg-large
+    display: block
+
+#sub-nav
+  display: flex
+  align-items: center
+  margin-right: -15px
+
+#nav-sun-btn
+  &:before
+    font-weight: 700
+
+#nav-moon-btn
+  &:before
+    font-weight: 700
