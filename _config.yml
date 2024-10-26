@@ -97,4 +97,6 @@ theme: reimu
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: ''
+  type: git
+  repository: git@github.com:Crystal1921/crystal1921.github.io
+  branch: main
