@@ -126,15 +126,15 @@ OhMyLive2d:
     #    ]
     #   }
 
-    # items:
-    #   - id: 'github'
-    #     icon: 'github-fill'
-    #     title: '我的github'
-    #     onClick: ()=>window.open('https://github.com/hacxy')
+    items:
+      - id: 'github'
+        icon: 'github-fill'
+        title: '我的github'
+        onClick: ()=>window.open('https://github.com/Crystal1921')
 
     mobileDisplay: true # 是否在移动端显示
     models:
-      - path: https://registry.npmmirror.com/live2d-widget-model-shizuku/1.0.5/files/assets/shizuku.model.json
+      - path: https://model.oml2d.com/chino/model.json
         mobilePosition: [-10, 23] # 移动端时模型在舞台中的位置。 默认值: [0,0] [横坐标, 纵坐标]
         mobileScale: 0.1 # 移动端时模型的缩放比例 默认值: 0.1
         mobileStageStyle: # 移动端时舞台的样式
@@ -147,54 +147,27 @@ OhMyLive2d:
         stageStyle:
           width: 250
           height: 250
-      - path: 'https://registry.npmmirror.com/live2d-widget-model-koharu/1.0.5/files/assets/koharu.model.json'
-        scale: 0.12
-        position: [0, 0]
-        stageStyle:
-          width: 250
-        mobileScale: 0.08
-        mobilePosition: [0, 0]
-        mobileStageStyle: # 移动端时舞台的样式
-          width: 180
-      - path: 'https://registry.npmmirror.com/live2d-widget-model-haruto/1.0.5/files/assets/haruto.model.json'
-        scale: 0.12
-        position: [0, 0]
-        mobileScale: 0.08
-        mobilePosition: [0, 0]
-        mobileStageStyle: # 移动端时舞台的样式
-          width: 180
-        stageStyle:
-          width: 250
     parentElement: document.body #为组件提供一个父元素，如果未指定则默认挂载到 body 中
     primaryColor: 'var(--btn-bg)' # 主题色 支持变量
     sayHello: false # 是否在初始化阶段打印项目信息
     tips:
       style:
-        width: 230
-        height: 120
+        width: 200
+        height: 100
         left: calc(50% - 20px)
-        top: -100px
+        top: -80px
       mobileStyle:
         width: 180
         height: 80
         left: calc(50% - 30px)
-        top: -100px
+        top: -80px
       idleTips:
         interval: 15000
-        # message:
-        #   - 你好呀~
-        #   - 欢迎来到我的小站~
+        message:
+          - 喝杯雨花茶吧
+          - 来快乐摸鱼
+          - 如果有错漏请向作者反馈哦
         # 自定义提示语 需要 引入 axios 库 ,也可以使用其他方法
-        message: |
-          function(){
-            return axios.get('https://v1.hitokoto.cn?c=i')
-              .then(function (response) {
-                return response.data.hitokoto ;
-              })
-              .catch(function (error) {
-                console.error(error);
-              });
-          }
         # wordTheDay: true
         # 自定义  https://v1.hitokoto.cn  数据
         # wordTheDay: |
