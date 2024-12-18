@@ -31,6 +31,8 @@ jobs:
         run: npm install
       - name: Install Theme
         run: npm install hexo-theme-reimu --save
+      - name: Install Live2D
+        run: npm install hexo-oh-my-live2d
       - name: Build
         run: npm run build
       - name: Upload Pages artifact
