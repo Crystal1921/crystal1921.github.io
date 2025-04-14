@@ -170,3 +170,67 @@ public class ActivityRegistry {
 ```
 
 而对于想自己设置执行的`Behavior`时，可以实现`BehaviorControl<E>`接口，或者继承自`Behavior<E extends LivingEntity>`。
+
+在使用已有的`Behavior`或者新的`Behavior`时需要注意，在构造方法中需要传入一个`Map<MemoryModuleType<?>, MemoryStatus> entryCondition`，必须要符合这里的条件才会执行这个行为。
+
+在MemoryStatus中可以看到所需要的状态
+
+``` java
+public enum MemoryStatus {
+    VALUE_PRESENT,//该 Memory 存在，且有值
+    VALUE_ABSENT,//该 Memory 存在，且没有值
+    REGISTERED;//该 Memory 存在，无论有没有值
+}
+```
+
+另外，在写入MemoryTypes时，可以使用`setMemoryWithExpiry`方法设置该记忆存储的时间，会在`Brain.forgetOutdatedMemories`中被遗忘，或者直接调用`Brain.eraseMemory(MemoryModuleType<U> type)`擦除该记忆。
+
+接下来解释在brain.tick()中发生了什么
+
+``` java
+    public void tick(ServerLevel level, E entity) {
+        this.forgetOutdatedMemories();//遗忘倒计时归零的MemoryModuleType
+        this.tickSensors(level, entity);//执行传感器任务
+        this.startEachNonRunningBehavior(level, entity);//会通过一系列逻辑，将全部的行为列表筛选出需要执行的行为
+        this.tickEachRunningBehavior(level, entity);//执行运行中任务的逻辑
+    }
+```
+
+![](image/brain系统笔记/startEachNonRunningBehavior.png)
+
+接下来我们解析一下`BehaviorControl`接口中的内容
+
+``` java
+public interface BehaviorControl<E extends LivingEntity> {
+    //返回当前行为的状态，分为运行或者停止
+    Behavior.Status getStatus();
+    //在startEachNonRunningBehavior方法中被调用，用于设置当前状态为RUNNING
+    boolean tryStart(ServerLevel level, E entity, long gameTime);
+    //在tickEachRunningBehavior中被调用，用于执行该行为所设置的内容
+    void tickOrStop(ServerLevel level, E entity, long gameTime);
+    //在brain.stopAll()中被调用，用于立即停止该行为
+    void doStop(ServerLevel level, E entity, long gameTime);
+
+    String debugString();
+}
+
+    public static enum Status {
+        STOPPED,
+        RUNNING;
+    }
+```
+当然麻将为我们提供了一套实现的很好的`Behavior<E extends LivingEntity>`。在继承这个类后，可以通过覆写一些方法简单实现目标逻辑
+
+覆写`checkExtraStartConditions`方法，来附加一些启动条件，只有返回true时才会设置RUNNING状态
+
+覆写`tick`方法，会在RUNNING状态时，每tick执行一次其中的动作
+
+覆写`stop`方法，在行为停止后进行的额外动作
+
+覆写`canStillUse`方法中，判断是否可以继续执行该动作
+
+在构造函数中，还可以传入`minDuration`和`maxDuration`，在新建该行为时，会在二者之间随机取一个数值作为该行为的持续时间，到时间会停止该行为。默认的`DEFAULT_DURATION`为60
+
+通过合理的覆写，我们可以实现一套条件启动的行为逻辑。然后通过Activity的切换和对MemoryModuleType的操作，实现一套有用的AI。
+
+本文感谢TartaricAcid老师的检查。
