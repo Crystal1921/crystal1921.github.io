@@ -1,10 +1,10 @@
-name: Pages
+name: Deploy to Server
 
 on:
   workflow_dispatch:
   push:
     branches:
-      - main # default branch
+      - main
 
 jobs:
   build:
@@ -13,14 +13,13 @@ jobs:
       - uses: actions/checkout@v4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          # If your repository depends on submodule, please see: https://github.com/actions/checkout
           submodules: recursive
+      
       - name: Use Node.js 20
         uses: actions/setup-node@v4
         with:
-          # Examples: 20, 18.19, >=16.20.2, lts/Iron, lts/Hydrogen, *, latest, current, node
-          # Ref: https://github.com/actions/setup-node#supported-version-syntax
           node-version: "20"
+      
       - name: Cache NPM dependencies
         uses: actions/cache@v4
         with:
@@ -28,28 +27,35 @@ jobs:
           key: ${{ runner.OS }}-npm-cache
           restore-keys: |
             ${{ runner.OS }}-npm-cache
+      
       - name: Install Dependencies
         run: npm install
+      
       - name: Install Theme
         run: npm install hexo-theme-reimu --save
+      
       - name: Install Live2D
         run: npm install hexo-oh-my-live2d
+      
       - name: Build
         run: npm run build
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: ./public
+
   deploy:
     needs: build
-    permissions:
-      pages: write
-      id-token: write
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Download built files
+        uses: actions/download-artifact@v4
+        with:
+          name: public
+          path: public
+      
+      - name: Setup SSH
+        uses: webfactory/ssh-agent@v0.7.0
+        with:
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+      
+      - name: Deploy to Server via Rsync
+        run: |
+          rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no" \
+          ./public/ git@${{ secrets.SSH_HOST }}:/www/wwwroot/sanae.crystal1921.fun/
